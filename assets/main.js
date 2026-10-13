@@ -83,7 +83,6 @@
   }
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-  const toTop = document.getElementById('toTop');
   toTop?.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 
   // ---------- 站内搜索 ----------
