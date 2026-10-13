@@ -534,8 +534,11 @@ pre.code::after { content: attr(data-lang); position: absolute; right: 10px; top
    所以 F12 改样式、禁用 JS、看图片网络请求都拿不到"清晰版"。
    ========================================================================== */
 .gate { position: relative; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--line); background: var(--bg-2); }
-.gate-frame { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background:
-  repeating-linear-gradient(45deg, var(--surface-2), var(--surface-2) 8px, var(--bg-2) 8px, var(--bg-2) 16px); }
+.gate-frame { position: relative; aspect-ratio: 4 / 3; overflow: hidden;
+  /* 没本地产物时也得有个真马赛克底，不能留白块（白块 = 看起来像图挂了） */
+  background-color: #262b31;
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 12px, transparent 12px 24px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 12px, transparent 12px 24px); }
 .gate-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
 /* 再叠一层像素格 + 暗化，视觉上明确告诉你"这是被打码的，不是加载失败" */
 .gate-mosaic { position: absolute; inset: 0; pointer-events: none;
