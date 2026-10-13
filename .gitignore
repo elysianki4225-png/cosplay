@@ -1,0 +1,4 @@
+# 产物由 build 生成，但 Pages 那个 branch-source 配置要求它们进库，所以 docs/ 和根目录 html 都是要提交的
+.DS_Store
+*.log
+node_modules/

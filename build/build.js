@@ -7,11 +7,16 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 const SRC = path.join(ROOT, 'src');
-const OUT = path.join(ROOT, 'docs');
+// 产物目录：默认 docs/（配 Pages 的 GitHub Actions 源用）。
+// 但这个仓库的 Pages 已经设成 "deploy from branch main, /"，没权限改，
+// 所以 CI 里再 build 一次 --out . 把站点文件铺到根目录，两种配法都能活。
+const OUT = path.join(ROOT, process.env.OUT_DIR || (process.argv.includes('--out') ? process.argv[process.argv.indexOf('--out') + 1] : 'docs'));
 const cfg = require(path.join(SRC, 'config.js'));
 
 // Pages 项目页都在 /<repo>/ 下面，CI 里直接按仓库名推
 const BASE = process.env.BASE_PATH || (process.env.GITHUB_REPOSITORY ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}/` : cfg.basePath || '/');
+
+const OUT_IS_ROOT = () => path.resolve(OUT) === path.resolve(ROOT);
 
 let slots = {};
 try { slots = require(path.join(SRC, 'slots.json')); } catch (e) {}
@@ -354,17 +359,18 @@ function write(rel, html) {
 }
 
 function copyAssets() {
-  fs.rmSync(path.join(OUT, 'assets'), { recursive: true, force: true });
+  if (!OUT_IS_ROOT()) fs.rmSync(path.join(OUT, 'assets'), { recursive: true, force: true });
+  else for (const f of ['ui.css', 'main.js', 'icons.svg', 'favicon.png']) fs.rmSync(path.join(OUT, 'assets', f), { force: true });  // 根目录那次构建：别把 ui/ 源文件残留混在产物里
   fs.mkdirSync(path.join(OUT, 'assets'), { recursive: true });
   // ui.css 是三个文件拼出来的，源码里分开写，产物里一个请求
-  const css = ['tokens', 'base', 'ui'].map(n => `/* ---- ${n}.css ---- */\n` + fs.readFileSync(path.join(ROOT, 'assets/css', n + '.css'), 'utf8')).join('\n');
+  const css = ['tokens', 'base', 'ui'].map(n => `/* ---- ${n}.css ---- */\n` + fs.readFileSync(path.join(ROOT, 'ui/css', n + '.css'), 'utf8')).join('\n');
   fs.writeFileSync(path.join(OUT, 'assets/ui.css'), css);
-  fs.copyFileSync(path.join(ROOT, 'assets/js/main.js'), path.join(OUT, 'assets/main.js'));
-  const fav = path.join(ROOT, 'assets/favicon.png');
+  fs.copyFileSync(path.join(ROOT, 'ui/js/main.js'), path.join(OUT, 'assets/main.js'));
+  const fav = path.join(ROOT, 'ui/favicon.png');
   if (fs.existsSync(fav)) fs.copyFileSync(fav, path.join(OUT, 'assets/favicon.png'));
-  const icons = fs.readFileSync(path.join(ROOT, 'assets/icons.svg'), 'utf8');
+  const icons = fs.readFileSync(path.join(ROOT, 'ui/icons.svg'), 'utf8');
   fs.writeFileSync(path.join(OUT, 'assets/icons.svg'), icons);
-  const imgs = path.join(ROOT, 'assets/images');
+  const imgs = path.join(ROOT, 'ui/images');
   if (fs.existsSync(imgs)) {
     fs.mkdirSync(path.join(OUT, 'assets/images'), { recursive: true });
     for (const f of fs.readdirSync(imgs)) fs.copyFileSync(path.join(imgs, f), path.join(OUT, 'assets/images', f));
@@ -379,8 +385,11 @@ const tocOf = (toc) => toc.length ? `<nav class="toc" aria-label="目录">
 </nav>` : '<span></span>';
 
 function build() {
-  fs.rmSync(OUT, { recursive: true, force: true });
+  const outIsRoot = OUT_IS_ROOT();
+  const KEEP = ['src', 'build', 'assets', '.git', 'README.md', 'docs', '.github'];
+  if (!outIsRoot) fs.rmSync(OUT, { recursive: true, force: true });
   fs.mkdirSync(OUT, { recursive: true });
+  if (outIsRoot) for (const f of fs.readdirSync(OUT)) if (/\.(html|xml|txt|json)$/.test(f) && !KEEP.includes(f) && f !== 'README.md') fs.rmSync(path.join(OUT, f));
   const sprite = copyAssets();
   fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
 

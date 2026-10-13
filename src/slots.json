@@ -1,5 +1,5 @@
 {
-  "_note": "图位登记。status=ready 才会渲染成 <figure>，其它一律出占位块（不会破图）。图片放 assets/images/，文件名对上 src 就行，改完 node build/build.js。",
+  "_note": "图位登记。status=ready 才会渲染成 <figure>，其它一律出占位块（不会破图）。源图放 ui/images/，文件名对上 src 里的 basename 就行，改完 node build/build.js && OUT_DIR=. node build/build.js。",
   "hero-base": {
     "src": "assets/images/hero-base.jpg",
     "alt": "316L 底座平置特写，中央螺纹接口朝上",

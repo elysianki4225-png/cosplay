@@ -38,12 +38,16 @@ desc: 器材向的拍摄标准 + 图位工作流。所有图片只拍器材与�
 ## 3. 出图规格（构建器按这个吃）
 
 ```
-路径      assets/images/<slot-key>.png
+路径      ui/images/<slot-key>.{jpg,png}
 尺寸      1600 x 1200（4:3）为首选；hero 位 1600 x 1000
 格式      PNG（截图/示意图） / JPG q82（照片）
 体积      单张 < 400 KB，整站图片 < 6 MB   # Pages 产物是纯静态，别把仓库塞爆
 命名      小写连字符，与 src/slots.json 的 key 一致
 ```
+
+### 当前还缺的图位
+
+`bristol`（布里斯托 5 型示意图）仍在 `pending`，正文里会显示占位块而不是破图——这是有意的：**占位块 = 待补，破图 = 出事了**，两种状态必须长得不一样。补法见下。
 
 ## 4. 图位工作流（本仓库的实现方式）
 
@@ -67,7 +71,7 @@ desc: 器材向的拍摄标准 + 图位工作流。所有图片只拍器材与�
 `status` 不是 `ready` 时，构建器输出一个**占位块**而不是破图。这样"图还没拍完"和"图丢了"在两代人眼里是两种状态，不会互相误判。
 
 ```bash
-cp 你的图.png assets/images/hero-base.png   # 改 status 为 ready
+cp 你的图.jpg ui/images/hero-base.jpg      # 改 status 为 ready
 node build/build.js
 ```
 

@@ -164,7 +164,7 @@
 <main id="main" class="wrap"><header class="article-head"><h1>拍摄与图片规范 / Media</h1><p class="lead measure">器材向的拍摄标准 + 图位工作流。所有图片只拍器材与桌面，不涉及人体；这也是这套内容能在公开平台活下去的唯一前提。</p></header>
       <div class="article-layout"><nav class="toc" aria-label="目录">
   <div class="toc-title">Contents</div>
-  <ol><li class="lvl-2"><a href="#1-拍摄对象边界">1. 拍摄对象边界</a></li><li class="lvl-2"><a href="#2-四个标准机位每次上新器材都按这套拍图与图之间才可比">2. 四个标准机位（每次上新器材都按这套拍，图与图之间才可比）</a></li><li class="lvl-2"><a href="#3-出图规格构建器按这个吃">3. 出图规格（构建器按这个吃）</a></li><li class="lvl-2"><a href="#4-图位工作流本仓库的实现方式">4. 图位工作流（本仓库的实现方式）</a></li><li class="lvl-3"><a href="#可选github-原始链接当图床">可选：GitHub 原始链接当图床</a></li><li class="lvl-2"><a href="#5-分发与平台适配">5. 分发与平台适配</a></li></ol>
+  <ol><li class="lvl-2"><a href="#1-拍摄对象边界">1. 拍摄对象边界</a></li><li class="lvl-2"><a href="#2-四个标准机位每次上新器材都按这套拍图与图之间才可比">2. 四个标准机位（每次上新器材都按这套拍，图与图之间才可比）</a></li><li class="lvl-2"><a href="#3-出图规格构建器按这个吃">3. 出图规格（构建器按这个吃）</a></li><li class="lvl-3"><a href="#当前还缺的图位">当前还缺的图位</a></li><li class="lvl-2"><a href="#4-图位工作流本仓库的实现方式">4. 图位工作流（本仓库的实现方式）</a></li><li class="lvl-3"><a href="#可选github-原始链接当图床">可选：GitHub 原始链接当图床</a></li><li class="lvl-2"><a href="#5-分发与平台适配">5. 分发与平台适配</a></li></ol>
 </nav><div class="prose"><h2 id="1-拍摄对象边界"><a class="anchor" href="#1-拍摄对象边界" aria-hidden="true">#</a>1. 拍摄对象边界</h2>
 <p>本站图片<strong>只允许出现</strong>：金属件、硅胶件、外设、工具、桌面、示意图表。</p>
 <p>理由不是审美洁癖，是三条很硬的实际约束：</p>
@@ -178,11 +178,13 @@
 <p>统一要求：</p>
 <ul><li>背景：哑光深灰或纯白，<strong>不要木纹/布纹</strong>（会污染尺寸判读）</li><li>每张图带<strong>比例参照物</strong>（硬币或钢尺），没有参照物的器材图等于没拍</li><li>白平衡用灰卡，别靠自动；金属色偏了整组图都废</li><li>不做磨皮、不做质感增强，允许的处理只有裁切与亮度曲线</li></ul>
 <h2 id="3-出图规格构建器按这个吃"><a class="anchor" href="#3-出图规格构建器按这个吃" aria-hidden="true">#</a>3. 出图规格（构建器按这个吃）</h2>
-<pre class="code"><code>路径      assets/images/&lt;slot-key&gt;.png
+<pre class="code"><code>路径      ui/images/&lt;slot-key&gt;.{jpg,png}
 尺寸      1600 x 1200（4:3）为首选；hero 位 1600 x 1000
 格式      PNG（截图/示意图） / JPG q82（照片）
 体积      单张 &lt; 400 KB，整站图片 &lt; 6 MB   # Pages 产物是纯静态，别把仓库塞爆
 命名      小写连字符，与 src/slots.json 的 key 一致</code></pre>
+<h3 id="当前还缺的图位"><a class="anchor" href="#当前还缺的图位" aria-hidden="true">#</a>当前还缺的图位</h3>
+<p><code>bristol</code>（布里斯托 5 型示意图）仍在 <code>pending</code>，正文里会显示占位块而不是破图——这是有意的：<strong>占位块 = 待补，破图 = 出事了</strong>，两种状态必须长得不一样。补法见下。</p>
 <h2 id="4-图位工作流本仓库的实现方式"><a class="anchor" href="#4-图位工作流本仓库的实现方式" aria-hidden="true">#</a>4. 图位工作流（本仓库的实现方式）</h2>
 <p>正文里不写死图片路径，只写图位：</p>
 <pre class="code" data-lang="markdown"><code>{{slot:hero-base}}</code></pre>
@@ -194,7 +196,7 @@
   &quot;status&quot;: &quot;ready&quot;
 }</code></pre>
 <p><code>status</code> 不是 <code>ready</code> 时，构建器输出一个<strong>占位块</strong>而不是破图。这样&quot;图还没拍完&quot;和&quot;图丢了&quot;在两代人眼里是两种状态，不会互相误判。</p>
-<pre class="code" data-lang="bash"><code>cp 你的图.png assets/images/hero-base.png   # 改 status 为 ready
+<pre class="code" data-lang="bash"><code>cp 你的图.jpg ui/images/hero-base.jpg      # 改 status 为 ready
 node build/build.js</code></pre>
 <h3 id="可选github-原始链接当图床"><a class="anchor" href="#可选github-原始链接当图床" aria-hidden="true">#</a>可选：GitHub 原始链接当图床</h3>
 <p>如果不想把大图塞进仓库，可以开一个纯图片仓库，正文里直接用：</p>

@@ -47,19 +47,21 @@
 零依赖静态站。没有框架、没有运行时依赖、没有埋点、没有第三方 CDN（连字体都不引，避免国内直连白屏等字体）。
 
 ```
-assets/
+ui/
   css/tokens.css    设计变量（亮/暗两套 + 跟随系统）
   css/base.css      reset、排版尺度、工具类
   css/ui.css        响应式组件库
   js/main.js        主题 / 抽屉 / 目录高亮 / 搜索 / lightbox / 计时器
-  icons.svg         34 枚自绘 24×24 图标，构建时内联
+  icons.svg         36 枚自绘 24×24 图标，构建时内联
+  images/           实拍与示意图源文件（产物里落到 assets/images/）
 build/build.js      markdown 子集解析 + 页面装配 + RSS/sitemap/搜索索引
 src/
   config.js         站点信息、导航、页脚、免责块
   slots.json        图位登记表（缺图 → 占位块，不出破图）
   posts/*.md        文章
   pages/*.md        单页
-docs/               构建产物 = Pages 根目录
+docs/               构建产物（给 Pages 的 "GitHub Actions" 源用）
+*.html, assets/     同一份产物铺到根目录（Pages 目前配的是 "deploy from branch /"）
 ```
 
 ### 响应式界面库（本站自研，`assets/css/ui.css`）
@@ -89,8 +91,9 @@ docs/               构建产物 = Pages 根目录
 ## 本地跑
 
 ```bash
-node build/build.js                       # 产物写到 docs/
-python3 -m http.server 8080 -d docs       # 或 npx serve docs
+node build/build.js               # 产物写到 docs/
+OUT_DIR=. node build/build.js     # 同一份产物铺到仓库根目录（CI 两步都做）
+python3 -m http.server 8080 -d docs   # 本地预览
 ```
 
 要改访问路径（比如换域名），设 `BASE_PATH=/xxx/`；CI 里会自动按仓库名推导。
@@ -105,7 +108,7 @@ python3 -m http.server 8080 -d docs       # 或 npx serve docs
 正文里只写 `{{slot:key}}`，不写死路径。补图：
 
 ```bash
-cp 你的图.jpg assets/images/hero-base.jpg   # 目标尺寸 1600×1200（hero 位 1600×1000），单张 < 400 KB
+cp 你的图.jpg ui/images/hero-base.jpg      # 目标尺寸 1600×1200（hero 位 1600×1000），单张 < 400 KB
 # 把 src/slots.json 里对应条目的 status 改成 "ready"
 node build/build.js
 ```
