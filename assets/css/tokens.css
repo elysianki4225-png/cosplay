@@ -1,0 +1,81 @@
+/* ==========================================================================
+   tokens — 全站唯一变量出口，改这里就够了
+   命名故意保持短：--bg/--fg/--line 这种，长了在 CSS 里读起来反而费劲
+   ========================================================================== */
+:root {
+  --font-sans: "Inter", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Cascadia Code", ui-monospace, Menlo, Consolas, monospace;
+  --font-serif: "Newsreader", "Iowan Old Style", Georgia, "Songti SC", serif;
+
+  /* 工业图纸配色：石墨 + 钢蓝 + 铜 */
+  --bg: #f4f2ee;
+  --bg-2: #ebe7e0;
+  --surface: #fffefb;
+  --surface-2: #f7f5f1;
+  --fg: #1a1d21;
+  --fg-2: #4a5158;
+  --fg-3: #7b848d;
+  --line: #d8d2c8;
+  --line-2: #e6e1d8;
+  --brand: #1f5f7a;
+  --brand-2: #2c7f9e;
+  --accent: #b06a2c;
+  --ok: #2f7a4f;
+  --warn: #a8721a;
+  --danger: #a8352f;
+  --grid-line: rgba(31, 95, 122, .07);
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --radius-lg: 16px;
+  --shadow-1: 0 1px 2px rgba(26, 29, 33, .05), 0 1px 1px rgba(26, 29, 33, .04);
+  --shadow-2: 0 6px 24px -8px rgba(26, 29, 33, .18), 0 2px 6px rgba(26, 29, 33, .06);
+  --shadow-3: 0 24px 60px -20px rgba(26, 29, 33, .32);
+
+  --wrap: 1180px;
+  --measure: 72ch;
+  --nav-h: 60px;
+  --gap: clamp(14px, 2.4vw, 28px);
+  --section-gap: clamp(46px, 7vw, 92px);
+
+  --ease: cubic-bezier(.2, .7, .3, 1);
+  --dur: .22s;
+}
+
+[data-theme="dark"] {
+  --bg: #0f1215;
+  --bg-2: #14181c;
+  --surface: #171b20;
+  --surface-2: #1c2126;
+  --fg: #e8e6e1;
+  --fg-2: #a9b0b7;
+  --fg-3: #767f88;
+  --line: #2a3138;
+  --line-2: #232930;
+  --brand: #62b6d4;
+  --brand-2: #85cbe4;
+  --accent: #d79a5c;
+  --ok: #5fbe88;
+  --warn: #dba53f;
+  --danger: #e2705f;
+  --grid-line: rgba(98, 182, 212, .07);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, .5);
+  --shadow-2: 0 8px 28px -10px rgba(0, 0, 0, .7);
+  --shadow-3: 0 24px 60px -18px rgba(0, 0, 0, .8);
+}
+
+/* 老实一点：尊重系统偏好，用户手动切过就以手动为准（逻辑在 main.js） */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: #0f1215; --bg-2: #14181c; --surface: #171b20; --surface-2: #1c2126;
+    --fg: #e8e6e1; --fg-2: #a9b0b7; --fg-3: #767f88;
+    --line: #2a3138; --line-2: #232930;
+    --brand: #62b6d4; --brand-2: #85cbe4; --accent: #d79a5c;
+    --ok: #5fbe88; --warn: #dba53f; --danger: #e2705f;
+    --grid-line: rgba(98, 182, 212, .07);
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, .5);
+    --shadow-2: 0 8px 28px -10px rgba(0, 0, 0, .7);
+    --shadow-3: 0 24px 60px -18px rgba(0, 0, 0, .8);
+  }
+}

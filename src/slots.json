@@ -1,0 +1,63 @@
+{
+  "_note": "图位登记。status=ready 才会渲染成 <figure>，其它一律出占位块（不会破图）。图片放 assets/images/，文件名对上 src 就行，改完 node build/build.js。",
+  "hero-base": {
+    "src": "assets/images/hero-base.jpg",
+    "alt": "316L 底座平置特写，中央螺纹接口朝上",
+    "caption": "图 01 / Rev.C 底座：Ø32 宽平法兰 + 双曲率锥面，中央 M8×1.25 内螺纹座。接触面是抛光的，背面喷砂。",
+    "status": "ready"
+  },
+  "exploded": {
+    "src": "assets/images/exploded.png",
+    "alt": "底座分解示意：法兰、腰部、螺纹嵌件、尾杆接口",
+    "caption": "图 02 / 模块化栈的分解：法兰（内螺纹座）→ 顶丝环 → 阶台芯轴（外螺纹）→ 外设套筒。承力路径只有一条，这就是它能被拆的原因。",
+    "status": "ready"
+  },
+  "thread-macro": {
+    "src": "assets/images/thread-macro.jpg",
+    "alt": "螺纹微距，可见牙型与防松胶",
+    "caption": "图 03 / 螺纹微距：0.5 圈旋合冗余 + 尼龙防松点。",
+    "status": "ready"
+  },
+  "flange-edge": {
+    "src": "assets/images/flange-edge.jpg",
+    "alt": "法兰边缘倒圆与镜面抛光的过渡带",
+    "caption": "图 04 / 边缘倒圆 R0.8 → R1.6 双段过渡，贴合度全靠这段。",
+    "status": "ready"
+  },
+  "tail-plug": {
+    "src": "assets/images/tail-plug.jpg",
+    "alt": "分段式膨大部与柔性腰的实物",
+    "caption": "图 05 / 刚性段 — 聚氨酯软腰 — 硅胶头：三段不同硬度。",
+    "status": "ready"
+  },
+  "lever": {
+    "src": "assets/images/lever.png",
+    "alt": "悬臂长度与根部力矩的关系示意",
+    "caption": "图 06 / 同一只尾巴，根部弯矩随悬臂长度平方级恶化。",
+    "status": "ready"
+  },
+  "bristol": {
+    "src": "assets/images/bristol.png",
+    "alt": "布里斯托第 5 型形态示意（图表，非实拍）",
+    "caption": "图 07 / 第 5 型：软块、边界清晰。这里只画形态，不放实拍。",
+    "status": "pending"
+  },
+  "torque-tool": {
+    "src": "assets/images/torque-tool.jpg",
+    "alt": "2mm 内六角 + 扭矩限定的锁紧方式",
+    "caption": "图 08 / 0.4 N·m 手感：拧到贴合再多 1/8 圈，别硬上。",
+    "status": "ready"
+  },
+  "cleaning": {
+    "src": "assets/images/cleaning.jpg",
+    "alt": "清洁与晾放工位",
+    "caption": "图 09 / 洗完立着晾，毛巾只包金属件，硅酮件不擦。",
+    "status": "ready"
+  },
+  "desk": {
+    "src": "assets/images/desk.jpg",
+    "alt": "工位俯拍：底座、备件、扭力起子",
+    "caption": "图 10 / 换件工位。",
+    "status": "ready"
+  }
+}

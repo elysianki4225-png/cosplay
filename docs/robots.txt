@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://elysianki4225-png.github.io/cosplay/sitemap.xml
