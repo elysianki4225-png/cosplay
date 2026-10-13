@@ -357,7 +357,8 @@ pre.code::after { content: attr(data-lang); position: absolute; right: 10px; top
 .gate-lock .ic { width: 28px; height: 28px; }
 .gate-lock span { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; }
 .gate[data-locked="1"] .gate-frame img.raw { display: none; }
-.gate[data-locked="1"] figcaption img { visibility: hidden; }   /* 别让 alt 之外的东西漏内容 */
+/* 未解锁时打印也没机会把原图带出去（img.raw 压根不在 DOM 里） */
+@media print { .gate img.raw { display: none !important; } .gate figcaption .gate-cap { display: none; } }
 .gate img.raw { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
   background: #07090b; animation: gatefade .35s var(--ease); }
 .gate .gate-frame img.raw { object-fit: cover; }
