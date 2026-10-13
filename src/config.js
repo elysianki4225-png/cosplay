@@ -1,5 +1,11 @@
 const repo = 'elysianki4225-png/cosplay';
-const siteUrl = `https://${repo.split('/')[0]}.github.io/${repo.split('/')[1]}/`;
+// GitHub Pages 的项目页挂在 <user>.github.io/<repo>/ 下，不是域名根。
+// 所以站内所有绝对路径都得带这个前缀：写死 '/' 的话，浏览器会去
+// https://<user>.github.io/assets/... 取 CSS/JS/图片（那是别人的地盘，一律 404），
+// 于是只有能落地的首页打得开，其它页面全是无样式 + 破图。
+// 改仓库名/换域名只需要改上面那行 repo（或用 BASE_PATH 覆盖）。
+const basePath = `/${repo.split('/')[1]}/`;
+const siteUrl = `https://${repo.split('/')[0]}.github.io${basePath}`;
 
 module.exports = {
   title: 'TAILDOCK',
@@ -8,7 +14,7 @@ module.exports = {
   desc: '一枚模块化尾巴底座（可拓展螺纹接口）的材料力学、生理代偿与 23/1 留置作息观测记录。面向 Cosplay / Petplay 道具穿戴，不涉及任何性用途描述。',
   repo: `https://github.com/${repo}`,
   pagesUrl: siteUrl,
-  basePath: '/',
+  basePath,
   siteUrl,
 
   nav: [

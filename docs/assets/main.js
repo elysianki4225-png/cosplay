@@ -9,7 +9,8 @@
   };
 
   // ---------- 主题 ----------
-  const THEME_KEY = 'cosplay…heme';
+  // 必须和 <head> 里那段内联脚本读的 key 一模一样，否则切完主题一翻页就变回系统主题
+  const THEME_KEY = 'cosplay-blog-theme';
   const mql = matchMedia('(prefers-color-scheme: dark)');
   function apply(t) {
     if (t === 'auto') root.removeAttribute('data-theme');

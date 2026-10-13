@@ -73,8 +73,3 @@ nav: index.html
     </div>
   </div>
 </div>
-
-<section class="sec-head" id="archive">
-  <h2>全部文章</h2>
-  <span class="sec-tag">Archive · 按更新时间倒序</span>
-</section>
