@@ -24,7 +24,7 @@ desc: 项目信息、技术栈、仓库与访问地址、许可与免责。
 
 - **无框架、无运行时依赖**：`node build/build.js` 直接产出静态 HTML。构建器只支持本站真正用到的 markdown 子集，包括 `:::warn` 这类 callout、`{{slot:key}}` 图位、管道表格、`[!1]` 脚注。
 - **UI Kit 是自己写的**：设计变量 / 基础排版 / 组件三层分离，断点 480 · 620 · 720 · 820 · 860 · 900 · 1080。移动端抽屉、粘性目录、表格横向滚动、lightbox、搜索面板都在这套里。
-- **图标**：34 枚自绘 24×24 stroke 图标（`assets/icons.svg`），构建时内联进页面，不请求任何外部资源——包括字体，所以在中国大陆直连也不会有白屏等字体的情况。
+- **图标**：40 枚自绘 24×24 stroke 图标（`assets/icons.svg`），构建时内联进页面，不请求任何外部资源——包括字体，所以在中国大陆直连也不会有白屏等字体的情况。
 - **主题**：亮色 / 暗色 / 跟随系统三态，`localStorage` 记忆，`<head>` 内 3 行脚本先上色后渲染，避免暗色闪白。
 - **发布**：`.github/workflows/deploy.yml` → GitHub Actions `upload-pages-artifact`，Pages 源设为 `GitHub Actions`。
 - **数据留本地**：留置计时器只用浏览器 `localStorage`，站点没有后端、没有埋点、没有第三方脚本。
