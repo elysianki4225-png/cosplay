@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /assets/images/gated/
-Disallow: /privacy.html
+Disallow: /cosplay/assets/images/gated/
+Disallow: /cosplay/privacy.html
 Sitemap: https://elysianki4225-png.github.io/cosplay/sitemap.xml

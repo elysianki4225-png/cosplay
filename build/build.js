@@ -49,9 +49,12 @@ const stripQuote = s => s.replace(/^["']|["']$/g, '');
 function escHtml(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
 
 function inline(s) {
-  const codes = [];
+  const codes = [], tags = [];
   // 反引号内容必须在这一步就转义：后面那句 escHtml 只作用于正文，藏起来的 code span 它碰不到
   s = s.replace(/`([^`\n]+)`/g, (_, c) => { codes.push(escHtml(c)); return `\u0000${codes.length - 1}\u0000`; });
+  // 行内 HTML 标签（<span class="law">、<b>、<a …>）先藏起来再转义：
+  // 作者在正文里手写的行内标签是「排版」不是「要显示的字」，不能被 escHtml 变成 &lt;span&gt;
+  s = s.replace(/<\/?[a-zA-Z][\w-]*(?:\s[^<>]*?)?\/?>/g, t => { tags.push(t); return `\u0001${tags.length - 1}\u0001`; });
   s = escHtml(s);
   // 图片单独走 figure/占位逻辑，这里只处理行内
   s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g, (_, alt, url, cap) => img(alt, url, cap, false));
@@ -69,6 +72,7 @@ function inline(s) {
   s = s.replace(/\[!(\w+)\]/g, (_m, n) => `<sup class="fn-ref"><a href="#fn-${n.toLowerCase()}" id="fnref-${n.toLowerCase()}">${n}</a></sup>`);
   s = s.replace(/\^\^([^^]+)\^\^/g, '<mark>$1</mark>');
   s = s.replace(/\u0000(\d+)\u0000/g, (_, i) => `<code>${codes[+i]}</code>`);
+  s = s.replace(/\u0001(\d+)\u0001/g, (_, i) => tags[+i]);
   return s;
 }
 
@@ -135,7 +139,15 @@ const CALLOUT_ICON = { info: 'i-gear', tip: 'i-shield', warn: 'i-alert', danger:
 
 // 整块原样输出的 raw html（首页 hero、组件级结构）。用行级状态机而不是正则：
 // 正则那版非贪婪会在第一个 </p> 收尾、贪婪又在最后一个 </section> 失控，两种坑都踩过。
-const isHtmlLine = l => /^<([a-zA-Z][\w-]*)/.test(l) || /^<!--/.test(l);
+// 只有「块级」标签开头的行才算 raw html 块的起点。
+// 行内标签（<span>/<b>/<a>…）开头的行必须继续走 markdown：法务页那种
+// `- <span class="law">…</span>…**加粗**…` 如果被当成 raw 块整行原样吐出去，
+// 页面上的 ** 就会变成两个真星号（曾经就是这样）。
+const HTML_BLOCK_T = /^(address|article|aside|audio|blockquote|body|canvas|dd|details|dialog|div|dl|dt|fieldset|figcaption|figure|footer|form|h[1-6]|header|hgroup|hr|iframe|li|main|map|nav|object|ol|option|p|picture|pre|script|section|select|style|summary|svg|table|tbody|td|template|textarea|tfoot|th|thead|tr|ul|video)$/i;
+const isHtmlLine = l => {
+  const m = /^<([a-zA-Z][\w-]*)/.exec(l);
+  return (m && HTML_BLOCK_T.test(m[1])) || /^<!--/.test(l);
+};
 // 只数块级标签。inline（<b>/<span>/<p> 混写一行）全跳过，否则一行内 depth 就被清零了
 const INLINE_T = /^(a|b|i|em|strong|code|kbd|sup|sub|mark|small|span|br|hr|img|svg|path|circle|rect|use|u|s|del|abbr)$/i;
 function rawBlockAt(lines, start) {
@@ -173,7 +185,14 @@ function renderBlocks(src, ctx) {
     let ln = lines[i];
     if (!ln.trim()) continue;
     if (ln.includes('<DIV class="note')) { out += ln.replace('<DIV ', '<div ').replace('</DIV>', '</div>') + '\n'; continue; }   // callout 的临时壳
-    if (isHtmlLine(ln)) { const end = rawBlockAt(lines, i); out += lines.slice(i, end + 1).join('\n') + '\n'; i = end; continue; }
+    if (isHtmlLine(ln)) {
+      const end = rawBlockAt(lines, i);
+      // raw 块整块原样吐，但图位要展开：首页 hero 的 <div class="cf-img">{{slot:hero-base}}</div>
+      // 就是靠这一句才出图，否则页面上会明晃晃写着 {{slot:hero-base}}
+      out += lines.slice(i, end + 1).join('\n')
+        .replace(/\{\{slot:([\w.-]+)\}\}/g, (_m, k) => (slots[k] && slots[k].gate) ? gateHtml(k, slots[k]) : slotHtml(k, null, false)) + '\n';
+      i = end; continue;
+    }
 
     let m;
     if ((m = /^(#{1,6})\s+(.*)$/.exec(ln))) {
@@ -445,10 +464,13 @@ function build() {
   for (const p of published) {
     const { html, toc } = renderMarkdown(p.md);
     const idx = published.indexOf(p);
-    const prev = published[idx - 1], next = published[idx + 1];
+    // published 是按日期倒序排的：下标更大 = 更早的文章。
+    // 所以「上一篇·更早」要往后找，「下一篇·更新」才是往前找（之前两个方向正好写反了，
+    // 点「上一篇」反而跳到比当前更新的那篇）。
+    const older = published[idx + 1], newer = published[idx - 1];
     const pager = `<nav class="pager" aria-label="上一篇文章 / 下一篇文章">
-      ${prev ? `<a href="${BASE}${prev.out}"><span>上一篇 · 更早</span><b>${escHtml(prev.fm.title)}</b></a>` : '<span></span>'}
-      ${next ? `<a class="next" href="${BASE}${next.out}"><span>下一篇 · 更新</span><b>${escHtml(next.fm.title)}</b></a>` : '<span></span>'}
+      ${older ? `<a href="${BASE}${older.out}"><span>上一篇 · 更早</span><b>${escHtml(older.fm.title)}</b></a>` : '<span></span>'}
+      ${newer ? `<a class="next" href="${BASE}${newer.out}"><span>下一篇 · 更新</span><b>${escHtml(newer.fm.title)}</b></a>` : '<span></span>'}
     </nav>`;
     const meta = `<div class="article-meta">
       <span>${fmtDate(p.fm.date)}</span><i class="dot"></i>
@@ -525,11 +547,49 @@ ${items}</channel></rss>`);
 ${[...published.map(p => `posts/${p.slug}.html`), ...pages.filter(p => p.fm.noindex !== 'true' && p.fm.noindex !== true).map(p => `${p.slug}.html`), 'index.html']
     .map(u => `  <url><loc>${site}${u}</loc></url>`).join('\n')}
 </urlset>`);
-  // 打码目录与含图位页面不让爬虫进；noindex 只是请求，真正要挡的是这里
-  write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /assets/images/gated/\nDisallow: /privacy.html\nSitemap: ${site}sitemap.xml\n`);
+  // 打码目录与含图位页面不让爬虫进；noindex 只是请求，真正要挡的是这里。
+  // 路径要带 BASE：站点在 /<repo>/ 下时，写死 "/assets/..." 指的其实是别人仓库，挡不住任何东西。
+  write('robots.txt', `User-agent: *\nAllow: /\nDisallow: ${BASE}assets/images/gated/\nDisallow: ${BASE}privacy.html\nSitemap: ${site}sitemap.xml\n`);
 
   const n = published.length + pages.length + 2;
   console.log(`built ${n} pages · ${published.length} posts · BASE=${BASE}`);
 }
 
+/* ---------------- 本地预览（--serve，零依赖） ----------------
+   文件头一直写着「加 --serve 起个本地预览」，其实从来没实现过。
+   预览必须挂在 BASE 前缀下（线上就是 /<repo>/），不然永远看不出路径到底对不对：
+   直接开 http://localhost:8080/ 只会得到 404，跟 GitHub Pages 上的行为一致。 */
+function serve() {
+  const http = require('http');
+  const argOf = (flag, def) => { const i = process.argv.indexOf(flag); return i > -1 ? process.argv[i + 1] : def; };
+  const port = Number(process.env.PORT || argOf('--port', 8080));
+  const host = process.env.HOST || argOf('--host', '127.0.0.1');   // 容器/局域网里要访问就加 --host 0.0.0.0
+  const MIME = {
+    '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8',
+    '.json': 'application/json; charset=utf-8', '.xml': 'application/xml; charset=utf-8', '.txt': 'text/plain; charset=utf-8',
+    '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.ico': 'image/x-icon',
+  };
+  const send = (res, code, file) => fs.readFile(file, (err, buf) => {
+    if (err) { res.writeHead(500); return res.end('500'); }
+    res.writeHead(code, { 'Content-Type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream' });
+    res.end(buf);
+  });
+  http.createServer((req, res) => {
+    let p;
+    try { p = decodeURIComponent(req.url.split('?')[0].split('#')[0]); } catch (e) { p = req.url; }
+    if (p === '/' || p === '') { res.writeHead(302, { Location: BASE }); return res.end(); }   // 根路径没有站点，跟 Pages 一样把人送到项目页
+    if (!p.startsWith(BASE)) { send(res, 404, path.join(OUT, '404.html')); return; }
+    let rel = p.slice(BASE.length);
+    if (rel.endsWith('/')) rel += 'index.html';
+    const file = path.resolve(OUT, rel);
+    if (file !== path.resolve(OUT) && !file.startsWith(path.resolve(OUT) + path.sep)) { res.writeHead(403); return res.end('403'); }
+    fs.stat(file, (err, st) => {
+      if (!err && st.isDirectory()) return send(res, 200, path.join(file, 'index.html'));
+      if (err) return send(res, 404, path.join(OUT, '404.html'));   // 找不到就走 404.html，和线上一致
+      send(res, 200, file);
+    });
+  }).listen(port, host, () => console.log(`本地预览: http://localhost:${port}${BASE}  (OUT=${path.relative(ROOT, OUT) || '.'} · Ctrl+C 停)`));
+}
+
 build();
+if (process.argv.includes('--serve')) serve();
