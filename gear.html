@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>硬件档案 / Gear · TAILDOCK</title>
+<meta name="description" content="底座与外设的完整规格表、公差、材质判定和更换周期。数据是个体样本的实测 + 供应商标称，不保证与你手上的那一枚一致。">
+<meta name="theme-color" content="#0f1215" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f2ee" media="(prefers-color-scheme: light)">
+<meta property="og:title" content="硬件档案 / Gear">
+<meta property="og:description" content="底座与外设的完整规格表、公差、材质判定和更换周期。数据是个体样本的实测 + 供应商标称，不保证与你手上的那一枚一致。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://elysianki4225-png.github.io/cosplay/gear.html">
+<meta property="og:image" content="https://elysianki4225-png.github.io/cosplay/assets/images/og.jpg">
+<link rel="canonical" href="https://elysianki4225-png.github.io/cosplay/gear.html">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f5f7a'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2.2' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="TAILDOCK" href="/feed.xml">
+<link rel="stylesheet" href="/assets/ui.css">
+<script>window.BASE="/";</script>
+<script>
+/* 先上主题再上内容，不然暗色用户会闪一下白 */
+(function(){try{var t=localStorage.getItem('cosplay-blog-theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;}catch(e){}})();
+</script>
+</head>
+<body><!-- 自绘图标集，24x24 网格，stroke=currentColor，粗细 1.6。构建时被内联进每个页面，不走网络。 -->
+<svg xmlns="http://www.w3.org/2000/svg" id="sprite-host" hidden aria-hidden="true" style="display:none">
+<symbol id="i-base" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3"/><path d="M12 3.6v2.4M12 18v2.4M3.6 12H6M18 12h2.4"/>
+</symbol>
+<symbol id="i-thread" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M14.5 3.5 20.5 9.5M3.5 20.5 9.5 14.5M6 18l-3 3M18 6l3-3"/><path d="M12.6 5.4 18.6 11.4M9.9 8.1l6 6M7.2 10.8l6 6M4.5 13.5l6 6"/>
+</symbol>
+<symbol id="i-torque" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3v3.2M12 17.8V21M3 12h3.2M17.8 12H21"/><circle cx="12" cy="12" r="5.8"/><path d="M9.4 12h5.2M12 9.4v5.2"/>
+</symbol>
+<symbol id="i-lever" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M3 16.5 21 7.5"/><path d="m17.4 5.4 3.6 2.1-2.1 3.6z" fill="currentColor" stroke="none"/><circle cx="7" cy="14.6" r="1.9"/><path d="M4 20h14"/>
+</symbol>
+<symbol id="i-weight" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M7 8h10l2.5 12H4.5z"/><path d="M9.6 8a2.4 2.4 0 1 1 4.8 0"/><path d="M12 12.5v3.5"/>
+</symbol>
+<symbol id="i-pressure" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 5h16"/><path d="M12 8v7"/><path d="m8.6 11.6 3.4 3.4 3.4-3.4"/><path d="M5 19.5h14"/>
+</symbol>
+<symbol id="i-timer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="13" r="8"/><path d="M12 9v4.2l2.8 2"/><path d="M9 2h6"/>
+</symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 2.8 4.6 6v6.2c0 4.4 3.1 7.4 7.4 9 4.3-1.6 7.4-4.6 7.4-9V6z"/><path d="m8.9 12 2.2 2.2 4-4.4"/>
+</symbol>
+<symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3.4 21.4 20H2.6z"/><path d="M12 9.4v4.4M12 16.6v.1"/>
+</symbol>
+<symbol id="i-stop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="8.6"/><path d="m6 6 12 12"/>
+</symbol>
+<symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3.2c3.6 4.2 6 6.9 6 9.8a6 6 0 0 1-12 0c0-2.9 2.4-5.6 6-9.8z"/><path d="M9.6 13.6a2.6 2.6 0 0 0 2.6 2.6"/>
+</symbol>
+<symbol id="i-wash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M6 21V7.5A2.5 2.5 0 0 1 8.5 5H11V2.6M11 5h5.5A2.5 2.5 0 0 1 19 7.5V13"/><path d="M3.6 13h10.8l-1 8h-8.8z"/><path d="M7 16v2.4M10.4 16v2.4"/>
+</symbol>
+<symbol id="i-cell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3.2c4.8 0 8.4 3.4 8.4 8.8S16.8 20.8 12 20.8 3.6 17.4 3.6 12 7.2 3.2 12 3.2z"/><circle cx="12" cy="12.2" r="2.6"/><path d="M7.6 7.4 9.6 9.4M16.4 7.4l-2 2M7.6 16.6l2-2M16.4 16.6l-2-2"/>
+</symbol>
+<symbol id="i-nerve" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 12h3.2l1.6-4 2.4 8 2-5.2 1.2 1.2H20"/><circle cx="4" cy="12" r="1.2"/><circle cx="20" cy="12" r="1.2"/>
+</symbol>
+<symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M3.6 20.4h16.8M4.8 20.4V11M9.6 20.4V6.6M14.4 20.4v-7.2M19.2 20.4V9"/>
+</symbol>
+<symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="3.2"/><path d="M12 2.6v2.6M12 18.8v2.6M2.6 12h2.6M18.8 12h2.6M5.4 5.4l1.9 1.9M16.7 16.7l1.9 1.9M18.6 5.4l-1.9 1.9M7.3 16.7l-1.9 1.9"/>
+</symbol>
+<symbol id="i-cat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4.4 9.6 5.2 4l4.2 2.8a8.9 8.9 0 0 1 5.2 0L18.8 4l.8 5.6"/><path d="M4.4 9.6c0 6 3.4 9.2 7.6 9.2s7.6-3.2 7.6-9.2"/><path d="M9.4 12.4h.1M14.6 12.4h.1M12 14.6v1.4M10.2 16.6a2.4 2.4 0 0 0 3.6 0"/>
+</symbol>
+<symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.2M12 19.4v2.2M2.4 12h2.2M19.4 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/>
+</symbol>
+<symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M20.4 13.6A8.6 8.6 0 0 1 10.4 3.6a8.6 8.6 0 1 0 10 10z"/>
+</symbol>
+<symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="10.6" cy="10.6" r="6.6"/><path d="m15.6 15.6 4.4 4.4"/>
+</symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M3.6 7h16.8M3.6 12h16.8M3.6 17h16.8"/>
+</symbol>
+<symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="m5.6 5.6 12.8 12.8M18.4 5.6 5.6 18.4"/>
+</symbol>
+<symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M10 13.8a4 4 0 0 0 5.7 0l2.9-2.9a4 4 0 1 0-5.7-5.7L11.6 6.5"/><path d="M14 10.2a4 4 0 0 0-5.7 0l-2.9 2.9a4 4 0 1 0 5.7 5.7l1.3-1.3"/>
+</symbol>
+<symbol id="i-github" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+<path d="M12 2.2A9.8 9.8 0 0 0 8.9 21.3c.5.1.7-.2.7-.5v-1.8c-2.7.6-3.3-1.3-3.3-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.6-1.4-2.2-.2-4.5-1.1-4.5-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.8-2.3 4.7-4.5 4.9.4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A9.8 9.8 0 0 0 12 2.2z"/>
+</symbol>
+<symbol id="i-rss" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4.4 4.4a15.2 15.2 0 0 1 15.2 15.2M4.4 10.4a9.2 9.2 0 0 1 9.2 9.2"/><circle cx="5.4" cy="18.6" r="1.4" fill="currentColor" stroke="none"/>
+</symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4.6 12h14.8M13.8 6.4 19.4 12l-5.6 5.6"/>
+</symbol>
+<symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 19.4V4.6M6.4 10.2 12 4.6l5.6 5.6"/>
+</symbol>
+<symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 4.6h5.2A2.8 2.8 0 0 1 12 7.4V20a2.4 2.4 0 0 0-2.4-2.4H4z"/><path d="M20 4.6h-5.2A2.8 2.8 0 0 0 12 7.4V20a2.4 2.4 0 0 1 2.4-2.4H20z"/>
+</symbol>
+<symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M8.4 6.6h11M8.4 12h11M8.4 17.4h11M4.6 6.6h.1M4.6 12h.1M4.6 17.4h.1"/>
+</symbol>
+<symbol id="i-clipboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M9 4.6H6.6A1.6 1.6 0 0 0 5 6.2v13a1.6 1.6 0 0 0 1.6 1.6h10.8A1.6 1.6 0 0 0 19 19.2v-13a1.6 1.6 0 0 0-1.6-1.6H15"/><rect x="9" y="3" width="6" height="3.2" rx="1"/><path d="M8.4 11.4h7.2M8.4 15.2h5"/>
+</symbol>
+<symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 8.4h3l1.6-2.6h6.8L17 8.4h3a1.6 1.6 0 0 1 1.6 1.6v8A1.6 1.6 0 0 1 20 19.6H4a1.6 1.6 0 0 1-1.6-1.6v-8A1.6 1.6 0 0 1 4 8.4z"/><circle cx="12" cy="13.6" r="3.4"/>
+</symbol>
+<symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="m12 3.2 8.6 4.4L12 12 3.4 7.6z"/><path d="m3.4 12.4 8.6 4.4 8.6-4.4M3.4 16.6 12 21l8.6-4.4"/>
+</symbol>
+<symbol id="i-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 4v16M6 8h12M4 20h16"/><path d="M6 8 3.4 13.6a2.8 2.8 0 0 0 5.2 0zM18 8l-2.6 5.6a2.8 2.8 0 0 0 5.2 0z"/>
+</symbol>
+<symbol id="i-lungs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3.6v8"/><path d="M12 8c-.4-2-2.4-2.6-3.8-1.6C7 7.4 6.6 9.8 6.4 12.2c-.2 2.4-.4 5 .8 6.4 1 1.2 3 .8 3.6-.6.6-1.4.6-4 .6-6"/><path d="M12 8c.4-2 2.4-2.6 3.8-1.6 1.2 1 1.6 3.4 1.8 5.8.2 2.4.4 5-.8 6.4-1 1.2-3 .8-3.6-.6-.6-1.4-.6-4-.6-6"/>
+</symbol>
+<symbol id="i-heart-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M20.4 8.6a4.4 4.4 0 0 0-8.4-1.9A4.4 4.4 0 0 0 3.6 8.6c0 5 8.4 10.4 8.4 10.4s8.4-5.4 8.4-10.4z"/><path d="M3.9 11.6h3.4l1.4-2.4 2.2 4.6 1.5-2.8h4"/>
+</symbol>
+<symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M13.4 4.6H19.4v6M19.4 4.6 11.2 12.8"/><path d="M18 13.8v4.4a1.8 1.8 0 0 1-1.8 1.8H5.8A1.8 1.8 0 0 1 4 18.2V7.8A1.8 1.8 0 0 1 5.8 6h4.4"/>
+</symbol>
+<symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M2.4 12S6 5.6 12 5.6 21.6 12 21.6 12 18 18.4 12 18.4 2.4 12 2.4 12z"/><circle cx="12" cy="12" r="3.1"/>
+</symbol>
+<symbol id="i-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 4.4 20 20M9.6 6.1A9.6 9.6 0 0 1 12 5.6c6 0 9.6 6.4 9.6 6.4a17 17 0 0 1-2.6 3.4M6.4 8.2A17 17 0 0 0 2.4 12S6 18.4 12 18.4c1 0 1.9-.2 2.7-.5"/><path d="M10 10.2a3.1 3.1 0 0 0 4.1 4.3"/>
+</symbol>
+<symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<rect x="4.8" y="10.4" width="14.4" height="9.8" rx="2"/><path d="M8.2 10.4V7.6a3.8 3.8 0 0 1 7.6 0v2.8"/><path d="M12 14v2.6"/>
+</symbol>
+<symbol id="i-scales" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3.6v16.8M6.4 20.4h11.2M4 7.6h16"/><path d="M6.8 7.6 3.6 14a3.4 3.4 0 0 0 6.4 0zM17.2 7.6 14 14a3.4 3.4 0 0 0 6.4 0z"/>
+</symbol>
+</svg>
+
+<a class="skip-link" href="#main">跳到正文</a>
+<div class="progress" aria-hidden="true"><i></i></div>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/index.html">
+      <span class="brand-mark"><svg class="ic"><use href="#i-base"/></svg></span>
+      <span>TAILDOCK<span class="brand-sub">Modular Tail Dock Log</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links"><li><a href="/index.html"><svg class="ic"><use href="#i-book"/></svg>首页</a></li><li><a href="/posts/modular-tail-base-23-1.html"><svg class="ic"><use href="#i-gear"/></svg>主报告</a></li><li><a href="/gear.html" aria-current="page"><svg class="ic"><use href="#i-base"/></svg>硬件档案</a></li><li><a href="/safety.html"><svg class="ic"><use href="#i-shield"/></svg>安全红线</a></li><li><a href="/privacy.html"><svg class="ic"><use href="#i-lock"/></svg>隐私与法务</a></li><li><a href="/media-guide.html"><svg class="ic"><use href="#i-camera"/></svg>拍摄规范</a></li><li><a href="/log.html"><svg class="ic"><use href="#i-clipboard"/></svg>更新日志</a></li></ul>
+    <div class="nav-actions">
+      <button class="icon-btn" data-search-btn aria-label="站内搜索"><svg class="ic"><use href="#i-search"/></svg></button>
+      <button class="icon-btn" data-theme-btn="light" aria-pressed="false"><svg class="ic"><use href="#i-sun"/></svg><span class="sr-only">亮色</span></button>
+      <button class="icon-btn" data-theme-btn="dark" aria-pressed="false"><svg class="ic"><use href="#i-moon"/></svg><span class="sr-only">暗色</span></button>
+      <button class="icon-btn" data-theme-btn="auto" aria-pressed="false"><svg class="ic"><use href="#i-layers"/></svg><span class="sr-only">跟随系统</span></button>
+      <a class="icon-btn" href="https://github.com/elysianki4225-png/cosplay" aria-label="源码仓库"><svg class="ic"><use href="#i-github"/></svg></a>
+      <button class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="nav-links" aria-label="菜单"><svg class="ic"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-panel" data-search-panel>
+  <div class="wrap">
+    <label class="sr-only" for="q">站内搜索</label>
+    <input id="q" type="search" placeholder="搜标题、正文、标签…（按 / 呼出，Esc 关闭）" autocomplete="off">
+    <div class="search-hits"><div class="search-empty">输入关键词开始搜索。</div></div>
+  </div>
+</div>
+<main id="main" class="wrap"><header class="article-head"><h1>硬件档案 / Gear</h1><p class="lead measure">底座与外设的完整规格表、公差、材质判定和更换周期。数据是个体样本的实测 + 供应商标称，不保证与你手上的那一枚一致。</p></header>
+      <div class="article-layout"><nav class="toc" aria-label="目录">
+  <div class="toc-title">Contents</div>
+  <ol><li class="lvl-2"><a href="#01-底座base">0.1 底座（Base）</a></li><li class="lvl-2"><a href="#02-留置体plug-body">0.2 留置体（Plug body）</a></li><li class="lvl-2"><a href="#03-外设清单accessory">0.3 外设清单（Accessory）</a></li><li class="lvl-2"><a href="#04-耗材与更换周期">0.4 耗材与更换周期</a></li><li class="lvl-2"><a href="#05-工具">0.5 工具</a></li><li class="lvl-2"><a href="#06-关于哪里买">0.6 关于&quot;哪里买&quot;</a></li></ol>
+</nav><div class="prose"><p>这一页是唯一&quot;以数据为主&quot;的页面。所有数值都标注来源：<strong>实测</strong> / <strong>标称</strong> / <strong>估算</strong>——因为在器材这件事上，把估算当实测是这个圈子最常见的作弊方式。</p>
+<h2 id="01-底座base"><a class="anchor" href="#01-底座base" aria-hidden="true">#</a>0.1 底座（Base）</h2>
+<div class="table-scroll"><table><thead><tr><th>项目</th><th>数值</th><th>来源</th><th>备注</th></tr></thead><tbody><tr><td>主体材质</td><td>316L 奥氏体不锈钢</td><td>供应商标称</td><td>医用级耐蚀配方，含钼；不是 304</td></tr>
+<tr><td>表面处理</td><td>接触面镜面抛光 Ra ≤ 0.4 µm；外缘喷砂</td><td>实测（触感 + 目视）</td><td>抛光只针对体表接触面</td></tr>
+<tr><td>外形</td><td>双曲率圆台 + 宽平法兰</td><td>—</td><td>放弃过&quot;内凹吸盘边缘&quot;，见主报告 §1.5</td></tr>
+<tr><td>法兰外径</td><td>32.0 mm</td><td>实测（卡尺）</td><td>承托面积的主变量</td></tr>
+<tr><td>法兰厚度</td><td>4.0 mm，边缘双段倒圆 R0.8 → R1.6</td><td>实测</td><td>倒圆半径直接决定压痕深度</td></tr>
+<tr><td>腰部直径</td><td>16.5 mm</td><td>实测</td><td>让位给臀间沟，避免坐硬面时顶到</td></tr>
+<tr><td>总质量（不含尾）</td><td>214 g</td><td>实测（0.1 g 天平）</td><td>金属件重量主要来自这里，也是主要成本</td></tr>
+<tr><td>中央接口</td><td>M8×1.25 内螺纹，深 14 mm（≈ 11 圈）</td><td>实测</td><td>有效承载按 6 圈算</td></tr>
+<tr><td>防松</td><td>尼龙预涂点 + 端面 M4 顶丝</td><td>—</td><td>顶丝为冗余，正常不应靠它防松</td></tr>
+<tr><td>装配扭矩</td><td>0.35–0.45 N·m</td><td>手感标定</td><td>2 mm 内六角；工具只用来&quot;补 1/8 圈&quot;</td></tr>
+<tr><td>内部限位</td><td>膨大部末端直径 &gt; 法兰最小直径，形成机械止挡</td><td>设计约束</td><td>这条是任何体内件的第一原则</td></tr></tbody></table></div>
+<div class="note note-info"><svg class="ic"><use href="#i-gear"/></svg><div><span class="note-label">为什么是 316L 而不是 304</span> <p>差别在汗液/清洗液环境下的点蚀抗力（316L 含 2–3% Mo）。天天接触皮肤、又常泡清水的件，我不想在晶间腐蚀上赌运气。价格贵一点，但这是全站唯一一个&quot;买一次就不要再换&quot;的零件。</p></div></div>
+<h2 id="02-留置体plug-body"><a class="anchor" href="#02-留置体plug-body" aria-hidden="true">#</a>0.2 留置体（Plug body）</h2>
+<p>三段不同硬度，是我认为整件设计里最重要的部分。</p>
+<div class="table-scroll"><table><thead><tr><th>段</th><th>材质</th><th>硬度</th><th>作用</th></tr></thead><tbody><tr><td>头部膨大部（Ø38 mm，长约 78 mm）</td><td>铂金催化加成型硅胶（无孔）</td><td>Shore A 18</td><td>贴合、跟随，避免刚性点接触</td></tr>
+<tr><td>柔性腰</td><td>同族硅胶，加厚壁</td><td>Shore A 30</td><td>吸收外界偏摆，把剪切挡在体外</td></tr>
+<tr><td>芯轴 + 法兰</td><td>316L</td><td>—</td><td>传递静载、提供止挡与接口</td></tr></tbody></table></div>
+<p>要点：</p>
+<ul><li><strong>膨大部是&quot;实心软&quot;，不是&quot;空心硬&quot;</strong>。空心薄壁在持续压力下会折痕，折痕就是清洁死角和裂口起点。</li><li>硅胶件与金属芯是<strong>粘接 + 机械包胶</strong>双固定。每次检查时用手扭转头部，任何相对位移都要重新粘接（我 8 个月里出现过一次）。</li><li>判断&quot;是否铂催化硅胶&quot;的土办法：拉伸时不发白、无刺鼻气味、煮沸 5 分钟后不发黏。发黏/发白/回弹差的直接退役。</li></ul>
+<figure class="shot"><a href="/assets/images/tail-plug.jpg" data-zoom data-caption="图 05 / 刚性段 — 聚氨酯软腰 — 硅胶头：三段不同硬度。"><img src="/assets/images/tail-plug.jpg" alt="分段式膨大部与柔性腰的实物" loading="lazy"><figcaption>图 05 / 刚性段 — 聚氨酯软腰 — 硅胶头：三段不同硬度。</figcaption></a></figure>
+<h2 id="03-外设清单accessory"><a class="anchor" href="#03-外设清单accessory" aria-hidden="true">#</a>0.3 外设清单（Accessory）</h2>
+<div class="table-scroll"><table><thead><tr><th>型号</th><th>质量</th><th>悬臂 L</th><th>接口</th><th>状态</th></tr></thead><tbody><tr><td>Fur-L / 短纤毛尾</td><td>92 g</td><td>120 mm</td><td>M8 公头 + 铝制座</td><td>主力，日用</td></tr>
+<tr><td>Fur-M / 中长蓬松尾</td><td>176 g</td><td>190 mm</td><td>同上</td><td>日用上限；走动明显有感</td></tr>
+<tr><td>Fur-XL / 展示尾</td><td>288 g</td><td>250 mm</td><td>同上</td><td><strong>仅静态展示</strong>，禁止行走</td></tr>
+<tr><td>Sil-M / 硅胶造型短尾</td><td>410 g</td><td>90 mm</td><td>同上</td><td>太重，现在只在试装时用</td></tr>
+<tr><td>Rig-01 / 骨架连接件</td><td>55 g</td><td>60 mm</td><td>同上 + 腰带卸载</td><td>人偶服/硬壳道具专用</td></tr>
+<tr><td>Lamp-02 / 灯串模块</td><td>38 g</td><td>60 mm</td><td>同上</td><td>电池仓独立绑带，线缆不受力</td></tr></tbody></table></div>
+<div class="note note-danger"><svg class="ic"><use href="#i-stop"/></svg><div><span class="note-label">已从档案中除名的方案</span> <ul><li>加长刚性杆（亚克力芯，L=310 mm）：接口处出现微动痕迹，体内刺痛，一次都没戴超过 40 分钟。</li><li>PLA/PETG 3D 打印承力件：静载冷流，牙型塌陷。</li><li>快插卡珠结构（自制）：卡珠槽成为应力集中点，且无法通过&quot;拉一下&quot;确认锁紧。<strong>任何不能靠拉拽自检的锁紧方式都不合格。</strong></li></ul></div></div>
+<h2 id="04-耗材与更换周期"><a class="anchor" href="#04-耗材与更换周期" aria-hidden="true">#</a>0.4 耗材与更换周期</h2>
+<div class="table-scroll"><table><thead><tr><th>件</th><th>周期</th><th>判废标准</th></tr></thead><tbody><tr><td>尼龙防松点</td><td>6 个月</td><td>清不掉/失效即重涂；不要靠&quot;还能感觉到阻力&quot;续命</td></tr>
+<tr><td>端面顶丝</td><td>随防松点一起</td><td>头部磨圆即换（M4×4，304）</td></tr>
+<tr><td>硅胶留置体</td><td>12–18 个月</td><td>任何缺口、发白、表面发黏、与芯轴有位移 → 立即退役</td></tr>
+<tr><td>毛尾</td><td>视磨损</td><td>底座连接处纤维拔出 &gt; 明显晃动即换</td></tr>
+<tr><td>润滑剂（水基）</td><td>开封 6 个月</td><td>出现分层/异味即丢</td></tr></tbody></table></div>
+<h2 id="05-工具"><a class="anchor" href="#05-工具" aria-hidden="true">#</a>0.5 工具</h2>
+<ul><li>2 mm 内六角（扭矩手感标定用）</li><li>数显卡尺 0/150 mm、0.1 g 天平：这两个不是&quot;发烧友装备&quot;，是唯一能让你把&quot;感觉变松了&quot;变成可核对数据的工具</li><li>手镜 + 冷光手电（自检用，见 <a href="safety.html">安全红线</a>）</li><li>无尘布；硅酮件<strong>不用酒精长期擦</strong>（会加速表面老化）</li></ul>
+<figure class="shot"><a href="/assets/images/desk.jpg" data-zoom data-caption="图 10 / 换件工位。"><img src="/assets/images/desk.jpg" alt="工位俯拍：底座、备件、扭力起子" loading="lazy"><figcaption>图 10 / 换件工位。</figcaption></a></figure>
+<h2 id="06-关于哪里买"><a class="anchor" href="#06-关于哪里买" aria-hidden="true">#</a>0.6 关于&quot;哪里买&quot;</h2>
+<p>本站不提供采购链接，也不做任何品牌背书。原因很实际：<strong>同一家店铺的两批货，公差可以差到 0.3 mm</strong>，我不想为别人的来料一致性负责。自建/CNC 加工的话，把关键尺寸（法兰外径、腰部直径、螺纹规格与圈数）按本页抄过去，然后自己卡尺复核——别信详情页。</p>
+</div></div></main>
+<div class="lightbox" role="dialog" aria-modal="true" aria-label="放大查看">
+  <button class="icon-btn" data-lb-close aria-label="关闭"><svg class="ic"><use href="#i-close"/></svg></button>
+  <div><img alt=""><p></p></div>
+</div>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>About</h4>
+        <p class="muted" style="max-width:44ch">TAILDOCK 是一份关于「模块化尾巴底座」的个人观测记录：把一坨 316L 不锈钢、一颗螺纹副和一段直肠黏膜之间的力学关系写清楚。目的只有一个——让道具穿戴更像工程，而不是更像运气。</p>
+        <div class="row" style="margin-top:14px">
+          <a class="btn btn-sm" href="https://github.com/elysianki4225-png/cosplay"><svg class="ic"><use href="#i-github"/></svg>源码 / 内容</a>
+          <a class="btn btn-sm" href="/feed.xml"><svg class="ic"><use href="#i-rss"/></svg>RSS</a>
+        </div>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/index.html">文章归档</a></li>
+          <li><a href="/gear.html">硬件规格表</a></li>
+          <li><a href="/safety.html">停戴红线清单</a></li>
+          <li><a href="/media-guide.html">拍摄与图片规范</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Disclaimer</h4>
+        <ul>
+          <li>本站道具定位为 <b>Cosplay 装饰/外观附件</b></li>
+          <li>非情趣用品推荐，无性用途描述</li>
+          <li>所有内容仅记录个人观测，不构成医疗建议</li>
+          <li>未成年人请勿阅读 / 请勿模仿</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-note">
+      <span>CC BY-NC 4.0 · 自建静态站（零依赖构建，无框架）</span>
+      <span class="mono"><a href="https://elysianki4225-png.github.io/cosplay/">elysianki4225-png.github.io/cosplay/</a></span>
+    </div>
+  </div>
+</footer>
+<button id="toTop" aria-label="回到顶部"><svg class="ic"><use href="#i-arrow-up"/></svg></button>
+<script src="/assets/main.js" defer></script>
+</body>
+</html>

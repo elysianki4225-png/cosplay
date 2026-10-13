@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>隐私、打码与法务 / Privacy &amp; Gate · TAILDOCK</title>
+<meta name="description" content="本站唯一一组佩戴实拍的处理方式、访问控制边界，以及&quot;如果流传出去会怎样、我该做什么&quot;。这一页不是免责声明摆设，是能照着执行的清单。">
+<meta name="theme-color" content="#0f1215" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f2ee" media="(prefers-color-scheme: light)">
+<meta property="og:title" content="隐私、打码与法务 / Privacy &amp; Gate">
+<meta property="og:description" content="本站唯一一组佩戴实拍的处理方式、访问控制边界，以及&quot;如果流传出去会怎样、我该做什么&quot;。这一页不是免责声明摆设，是能照着执行的清单。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://elysianki4225-png.github.io/cosplay/privacy.html">
+<meta property="og:image" content="https://elysianki4225-png.github.io/cosplay/assets/images/og.jpg">
+<link rel="canonical" href="https://elysianki4225-png.github.io/cosplay/privacy.html">
+<meta name="robots" content="noindex,nosnippet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f5f7a'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2.2' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="TAILDOCK" href="/feed.xml">
+<link rel="stylesheet" href="/assets/ui.css">
+<script>window.BASE="/";</script>
+<script>
+/* 先上主题再上内容，不然暗色用户会闪一下白 */
+(function(){try{var t=localStorage.getItem('cosplay-blog-theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;}catch(e){}})();
+</script>
+</head>
+<body><!-- 自绘图标集，24x24 网格，stroke=currentColor，粗细 1.6。构建时被内联进每个页面，不走网络。 -->
+<svg xmlns="http://www.w3.org/2000/svg" id="sprite-host" hidden aria-hidden="true" style="display:none">
+<symbol id="i-base" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3"/><path d="M12 3.6v2.4M12 18v2.4M3.6 12H6M18 12h2.4"/>
+</symbol>
+<symbol id="i-thread" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M14.5 3.5 20.5 9.5M3.5 20.5 9.5 14.5M6 18l-3 3M18 6l3-3"/><path d="M12.6 5.4 18.6 11.4M9.9 8.1l6 6M7.2 10.8l6 6M4.5 13.5l6 6"/>
+</symbol>
+<symbol id="i-torque" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3v3.2M12 17.8V21M3 12h3.2M17.8 12H21"/><circle cx="12" cy="12" r="5.8"/><path d="M9.4 12h5.2M12 9.4v5.2"/>
+</symbol>
+<symbol id="i-lever" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M3 16.5 21 7.5"/><path d="m17.4 5.4 3.6 2.1-2.1 3.6z" fill="currentColor" stroke="none"/><circle cx="7" cy="14.6" r="1.9"/><path d="M4 20h14"/>
+</symbol>
+<symbol id="i-weight" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M7 8h10l2.5 12H4.5z"/><path d="M9.6 8a2.4 2.4 0 1 1 4.8 0"/><path d="M12 12.5v3.5"/>
+</symbol>
+<symbol id="i-pressure" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 5h16"/><path d="M12 8v7"/><path d="m8.6 11.6 3.4 3.4 3.4-3.4"/><path d="M5 19.5h14"/>
+</symbol>
+<symbol id="i-timer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="13" r="8"/><path d="M12 9v4.2l2.8 2"/><path d="M9 2h6"/>
+</symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 2.8 4.6 6v6.2c0 4.4 3.1 7.4 7.4 9 4.3-1.6 7.4-4.6 7.4-9V6z"/><path d="m8.9 12 2.2 2.2 4-4.4"/>
+</symbol>
+<symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3.4 21.4 20H2.6z"/><path d="M12 9.4v4.4M12 16.6v.1"/>
+</symbol>
+<symbol id="i-stop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="8.6"/><path d="m6 6 12 12"/>
+</symbol>
+<symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3.2c3.6 4.2 6 6.9 6 9.8a6 6 0 0 1-12 0c0-2.9 2.4-5.6 6-9.8z"/><path d="M9.6 13.6a2.6 2.6 0 0 0 2.6 2.6"/>
+</symbol>
+<symbol id="i-wash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M6 21V7.5A2.5 2.5 0 0 1 8.5 5H11V2.6M11 5h5.5A2.5 2.5 0 0 1 19 7.5V13"/><path d="M3.6 13h10.8l-1 8h-8.8z"/><path d="M7 16v2.4M10.4 16v2.4"/>
+</symbol>
+<symbol id="i-cell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3.2c4.8 0 8.4 3.4 8.4 8.8S16.8 20.8 12 20.8 3.6 17.4 3.6 12 7.2 3.2 12 3.2z"/><circle cx="12" cy="12.2" r="2.6"/><path d="M7.6 7.4 9.6 9.4M16.4 7.4l-2 2M7.6 16.6l2-2M16.4 16.6l-2-2"/>
+</symbol>
+<symbol id="i-nerve" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 12h3.2l1.6-4 2.4 8 2-5.2 1.2 1.2H20"/><circle cx="4" cy="12" r="1.2"/><circle cx="20" cy="12" r="1.2"/>
+</symbol>
+<symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M3.6 20.4h16.8M4.8 20.4V11M9.6 20.4V6.6M14.4 20.4v-7.2M19.2 20.4V9"/>
+</symbol>
+<symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="3.2"/><path d="M12 2.6v2.6M12 18.8v2.6M2.6 12h2.6M18.8 12h2.6M5.4 5.4l1.9 1.9M16.7 16.7l1.9 1.9M18.6 5.4l-1.9 1.9M7.3 16.7l-1.9 1.9"/>
+</symbol>
+<symbol id="i-cat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4.4 9.6 5.2 4l4.2 2.8a8.9 8.9 0 0 1 5.2 0L18.8 4l.8 5.6"/><path d="M4.4 9.6c0 6 3.4 9.2 7.6 9.2s7.6-3.2 7.6-9.2"/><path d="M9.4 12.4h.1M14.6 12.4h.1M12 14.6v1.4M10.2 16.6a2.4 2.4 0 0 0 3.6 0"/>
+</symbol>
+<symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.2M12 19.4v2.2M2.4 12h2.2M19.4 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/>
+</symbol>
+<symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M20.4 13.6A8.6 8.6 0 0 1 10.4 3.6a8.6 8.6 0 1 0 10 10z"/>
+</symbol>
+<symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="10.6" cy="10.6" r="6.6"/><path d="m15.6 15.6 4.4 4.4"/>
+</symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M3.6 7h16.8M3.6 12h16.8M3.6 17h16.8"/>
+</symbol>
+<symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="m5.6 5.6 12.8 12.8M18.4 5.6 5.6 18.4"/>
+</symbol>
+<symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M10 13.8a4 4 0 0 0 5.7 0l2.9-2.9a4 4 0 1 0-5.7-5.7L11.6 6.5"/><path d="M14 10.2a4 4 0 0 0-5.7 0l-2.9 2.9a4 4 0 1 0 5.7 5.7l1.3-1.3"/>
+</symbol>
+<symbol id="i-github" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+<path d="M12 2.2A9.8 9.8 0 0 0 8.9 21.3c.5.1.7-.2.7-.5v-1.8c-2.7.6-3.3-1.3-3.3-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.6-1.4-2.2-.2-4.5-1.1-4.5-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.8-2.3 4.7-4.5 4.9.4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A9.8 9.8 0 0 0 12 2.2z"/>
+</symbol>
+<symbol id="i-rss" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4.4 4.4a15.2 15.2 0 0 1 15.2 15.2M4.4 10.4a9.2 9.2 0 0 1 9.2 9.2"/><circle cx="5.4" cy="18.6" r="1.4" fill="currentColor" stroke="none"/>
+</symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4.6 12h14.8M13.8 6.4 19.4 12l-5.6 5.6"/>
+</symbol>
+<symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 19.4V4.6M6.4 10.2 12 4.6l5.6 5.6"/>
+</symbol>
+<symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 4.6h5.2A2.8 2.8 0 0 1 12 7.4V20a2.4 2.4 0 0 0-2.4-2.4H4z"/><path d="M20 4.6h-5.2A2.8 2.8 0 0 0 12 7.4V20a2.4 2.4 0 0 1 2.4-2.4H20z"/>
+</symbol>
+<symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M8.4 6.6h11M8.4 12h11M8.4 17.4h11M4.6 6.6h.1M4.6 12h.1M4.6 17.4h.1"/>
+</symbol>
+<symbol id="i-clipboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M9 4.6H6.6A1.6 1.6 0 0 0 5 6.2v13a1.6 1.6 0 0 0 1.6 1.6h10.8A1.6 1.6 0 0 0 19 19.2v-13a1.6 1.6 0 0 0-1.6-1.6H15"/><rect x="9" y="3" width="6" height="3.2" rx="1"/><path d="M8.4 11.4h7.2M8.4 15.2h5"/>
+</symbol>
+<symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 8.4h3l1.6-2.6h6.8L17 8.4h3a1.6 1.6 0 0 1 1.6 1.6v8A1.6 1.6 0 0 1 20 19.6H4a1.6 1.6 0 0 1-1.6-1.6v-8A1.6 1.6 0 0 1 4 8.4z"/><circle cx="12" cy="13.6" r="3.4"/>
+</symbol>
+<symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="m12 3.2 8.6 4.4L12 12 3.4 7.6z"/><path d="m3.4 12.4 8.6 4.4 8.6-4.4M3.4 16.6 12 21l8.6-4.4"/>
+</symbol>
+<symbol id="i-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 4v16M6 8h12M4 20h16"/><path d="M6 8 3.4 13.6a2.8 2.8 0 0 0 5.2 0zM18 8l-2.6 5.6a2.8 2.8 0 0 0 5.2 0z"/>
+</symbol>
+<symbol id="i-lungs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3.6v8"/><path d="M12 8c-.4-2-2.4-2.6-3.8-1.6C7 7.4 6.6 9.8 6.4 12.2c-.2 2.4-.4 5 .8 6.4 1 1.2 3 .8 3.6-.6.6-1.4.6-4 .6-6"/><path d="M12 8c.4-2 2.4-2.6 3.8-1.6 1.2 1 1.6 3.4 1.8 5.8.2 2.4.4 5-.8 6.4-1 1.2-3 .8-3.6-.6-.6-1.4-.6-4-.6-6"/>
+</symbol>
+<symbol id="i-heart-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M20.4 8.6a4.4 4.4 0 0 0-8.4-1.9A4.4 4.4 0 0 0 3.6 8.6c0 5 8.4 10.4 8.4 10.4s8.4-5.4 8.4-10.4z"/><path d="M3.9 11.6h3.4l1.4-2.4 2.2 4.6 1.5-2.8h4"/>
+</symbol>
+<symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M13.4 4.6H19.4v6M19.4 4.6 11.2 12.8"/><path d="M18 13.8v4.4a1.8 1.8 0 0 1-1.8 1.8H5.8A1.8 1.8 0 0 1 4 18.2V7.8A1.8 1.8 0 0 1 5.8 6h4.4"/>
+</symbol>
+<symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M2.4 12S6 5.6 12 5.6 21.6 12 21.6 12 18 18.4 12 18.4 2.4 12 2.4 12z"/><circle cx="12" cy="12" r="3.1"/>
+</symbol>
+<symbol id="i-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 4.4 20 20M9.6 6.1A9.6 9.6 0 0 1 12 5.6c6 0 9.6 6.4 9.6 6.4a17 17 0 0 1-2.6 3.4M6.4 8.2A17 17 0 0 0 2.4 12S6 18.4 12 18.4c1 0 1.9-.2 2.7-.5"/><path d="M10 10.2a3.1 3.1 0 0 0 4.1 4.3"/>
+</symbol>
+<symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<rect x="4.8" y="10.4" width="14.4" height="9.8" rx="2"/><path d="M8.2 10.4V7.6a3.8 3.8 0 0 1 7.6 0v2.8"/><path d="M12 14v2.6"/>
+</symbol>
+<symbol id="i-scales" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3.6v16.8M6.4 20.4h11.2M4 7.6h16"/><path d="M6.8 7.6 3.6 14a3.4 3.4 0 0 0 6.4 0zM17.2 7.6 14 14a3.4 3.4 0 0 0 6.4 0z"/>
+</symbol>
+</svg>
+
+<a class="skip-link" href="#main">跳到正文</a>
+<div class="progress" aria-hidden="true"><i></i></div>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/index.html">
+      <span class="brand-mark"><svg class="ic"><use href="#i-base"/></svg></span>
+      <span>TAILDOCK<span class="brand-sub">Modular Tail Dock Log</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links"><li><a href="/index.html"><svg class="ic"><use href="#i-book"/></svg>首页</a></li><li><a href="/posts/modular-tail-base-23-1.html"><svg class="ic"><use href="#i-gear"/></svg>主报告</a></li><li><a href="/gear.html"><svg class="ic"><use href="#i-base"/></svg>硬件档案</a></li><li><a href="/safety.html"><svg class="ic"><use href="#i-shield"/></svg>安全红线</a></li><li><a href="/privacy.html" aria-current="page"><svg class="ic"><use href="#i-lock"/></svg>隐私与法务</a></li><li><a href="/media-guide.html"><svg class="ic"><use href="#i-camera"/></svg>拍摄规范</a></li><li><a href="/log.html"><svg class="ic"><use href="#i-clipboard"/></svg>更新日志</a></li></ul>
+    <div class="nav-actions">
+      <button class="icon-btn" data-search-btn aria-label="站内搜索"><svg class="ic"><use href="#i-search"/></svg></button>
+      <button class="icon-btn" data-theme-btn="light" aria-pressed="false"><svg class="ic"><use href="#i-sun"/></svg><span class="sr-only">亮色</span></button>
+      <button class="icon-btn" data-theme-btn="dark" aria-pressed="false"><svg class="ic"><use href="#i-moon"/></svg><span class="sr-only">暗色</span></button>
+      <button class="icon-btn" data-theme-btn="auto" aria-pressed="false"><svg class="ic"><use href="#i-layers"/></svg><span class="sr-only">跟随系统</span></button>
+      <a class="icon-btn" href="https://github.com/elysianki4225-png/cosplay" aria-label="源码仓库"><svg class="ic"><use href="#i-github"/></svg></a>
+      <button class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="nav-links" aria-label="菜单"><svg class="ic"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-panel" data-search-panel>
+  <div class="wrap">
+    <label class="sr-only" for="q">站内搜索</label>
+    <input id="q" type="search" placeholder="搜标题、正文、标签…（按 / 呼出，Esc 关闭）" autocomplete="off">
+    <div class="search-hits"><div class="search-empty">输入关键词开始搜索。</div></div>
+  </div>
+</div>
+<main id="main" class="wrap"><header class="article-head"><h1>隐私、打码与法务 / Privacy &amp; Gate</h1><p class="lead measure">本站唯一一组佩戴实拍的处理方式、访问控制边界，以及&quot;如果流传出去会怎样、我该做什么&quot;。这一页不是免责声明摆设，是能照着执行的清单。</p></header>
+      <div class="article-layout"><nav class="toc" aria-label="目录">
+  <div class="toc-title">Contents</div>
+  <ol><li class="lvl-2"><a href="#1-本页两张图的来源">1. 本页两张图的来源</a></li><li class="lvl-2"><a href="#2-技术实现可复核">2. 技术实现（可复核）</a></li><li class="lvl-2"><a href="#3-三个诚实的结论比我们很重视隐私有用">3. 三个诚实的结论（比&quot;我们很重视隐私&quot;有用）</a></li><li class="lvl-2"><a href="#4-未经授权传播会面临的法律责任">4. 未经授权传播会面临的法律责任</a></li><li class="lvl-3"><a href="#31-民事责任对传播者最常用的一击">3.1 民事责任（对传播者最常用的一击）</a></li><li class="lvl-3"><a href="#32-行政责任治安处罚">3.2 行政责任（治安处罚）</a></li><li class="lvl-3"><a href="#33-刑事责任注意这一条可能也指向本人">3.3 刑事责任（注意：这一条可能也指向&quot;本人&quot;）</a></li><li class="lvl-3"><a href="#34-平台与刑事交叉的其它情形">3.4 平台与刑事交叉的其它情形</a></li><li class="lvl-2"><a href="#5-万一真的流传出去了按顺序做">5. 万一真的流传出去了：按顺序做</a></li><li class="lvl-2"><a href="#6-本站采取的预防性措施">6. 本站采取的预防性措施</a></li><li class="lvl-2"><a href="#7-记录表真的出事了就填这张">7. 记录表（真的出事了就填这张）</a></li></ol>
+</nav><div class="prose"><blockquote><p><sup class="fn-ref"><a href="#fn-1" id="fnref-1">1</a></sup> 本页含佩戴实拍（默认打码）。仅成年读者可查阅。本站为含图位页面关闭搜索引擎索引（<code>noindex</code>），但 <strong><code>noindex</code> 只是请求，不是强制</strong>——真正的边界见 §3。</p></blockquote>
+<div class="banner gate-banner"><svg class="ic"><use href="#i-lock"/></svg>
+<div><b>先说清楚这套"点一下才显示"到底是什么：</b>它是<b>视觉遮挡 + 交互控制</b>，不是访问控制。默认展示的图在构建阶段就已经把像素压掉了（`build/blur.sh`），所以未解锁时 DOM 与网络请求里都没有清晰版；但服务器仍然会把原图文件吐给任何知道 URL 的人。别把它当成锁。</div>
+</div>
+<figure class="shot gate" data-gate="external" data-locked="1" data-raw="https://im.gurl.eu.org/file/AgACAgEAAxkDAAEBtihqzjU3zyU75YFg-20ySWiWm64U3AACuwxrG3a_eEa7ke9zR4A3zgEAAwIAA3kAAz0E.png" data-alt="佩戴位记录（内容从略）" data-caption="图 11 / 佩戴位记录 · 其一。默认打码。" id="gate-wear-01">
+  <div class="gate-frame">
+    <span class="gate-mosaic" aria-hidden="true"></span></div>
+  <figcaption><button class="btn btn-sm gate-btn" type="button"><svg class="ic"><use href="#i-eye"/></svg><span>点击查阅原图</span></button><span class="gate-note">已打码 · 原图挂在外部图床，本站不代理不缓存</span><div class="gate-cap" hidden></div></figcaption>
+</figure>
+<figure class="shot gate" data-gate="external" data-locked="1" data-raw="https://im.gurl.eu.org/file/AgACAgEAAxkDAAEBtilqzjV3Y3E_d0vz2I3t7MXvl2o5ZgACvAxrG3a_eEaSWvzdns2WWAEAAwIAA3kAAz0E.png" data-alt="佩戴位记录（内容从略）" data-caption="图 12 / 佩戴位记录 · 其二。默认打码。" id="gate-wear-02">
+  <div class="gate-frame">
+    <span class="gate-mosaic" aria-hidden="true"></span></div>
+  <figcaption><button class="btn btn-sm gate-btn" type="button"><svg class="ic"><use href="#i-eye"/></svg><span>点击查阅原图</span></button><span class="gate-note">已打码 · 原图挂在外部图床，本站不代理不缓存</span><div class="gate-cap" hidden></div></figcaption>
+</figure>
+<h2 id="1-本页两张图的来源"><a class="anchor" href="#1-本页两张图的来源" aria-hidden="true">#</a>1. 本页两张图的来源</h2>
+<p>两条 <code>gate: &quot;external&quot;</code> 图位，<code>data-raw</code> 指向你自己那个图床的直链：未解锁时页面里只有 CSS 马赛克底 + 一行提示，<strong><code>&lt;img&gt;</code> 元素由点击后的 JS 现场插入</strong>，所以源码、搜索引擎、图片爬虫都拿不到那张图。图床侧的可访问性、保留期、是否被抓取，与本站无关——这也是 §3 第 1 条要表达的意思。</p>
+<p>想改成&quot;原图只留本地&quot;：把图放进 <code>ui/photos/</code>（已 gitignore），跑 <code>bash build/blur.sh</code>，再把图位的 <code>gate</code> 从 <code>external</code> 改成 <code>local</code> 并填 <code>src</code>。此后仓库里只会出现丢弃过像素的打码版。</p>
+<h2 id="2-技术实现可复核"><a class="anchor" href="#2-技术实现可复核" aria-hidden="true">#</a>2. 技术实现（可复核）</h2>
+<div class="table-scroll"><table><thead><tr><th>环节</th><th>做法</th><th>为什么这么做</th></tr></thead><tbody><tr><td>源图存放</td><td><code>ui/photos/</code>，已进 <code>.gitignore</code></td><td>原图永远不进仓库、不进 git 历史。<strong>进了历史就再也删不干净</strong>，这条没有妥协空间</td></tr>
+<tr><td>打码</td><td><code>-strip</code>（去 EXIF/GPS/机型）→ 降采样到 2% 再放大（像素真被丢弃）→ <code>blur 0x7</code> 抹掉马赛克块边界</td><td>只做 CSS <code>filter: blur()</code> 的话，F12 删一行样式就还原了，那叫自欺欺人</td></tr>
+<tr><td>尺寸上限</td><td>最长边 1600 px</td><td>原图分辨率往往够辨认纹身、门窗牌、房间布局，必须降</td></tr>
+<tr><td>封面</td><td>列表与详情共用同一张打码图（含 480×360 thumb）</td><td>不给&quot;缩略图反而是清晰的&quot;留漏洞</td></tr>
+<tr><td>未解锁时</td><td>HTML 里只有 <code>data-raw</code> 属性，没有 <code>&lt;img src&gt;</code>；alt 文本也是空的</td><td>搜索引擎与图片爬虫抓不到内容</td></tr>
+<tr><td>解锁</td><td>点击按钮 → JS 现插 <code>&lt;img&gt;</code>；状态存 <code>sessionStorage</code></td><td>关掉标签页自动回到打码态；在自习室、公司电脑上借用浏览器不会留下&quot;下次打开还是开的&quot;</td></tr>
+<tr><td>整页展开</td><td>链接尾部加 <code>#unlocked</code>，<code>#locked</code> 复位</td><td>自己看的时候省事。<strong>别把 <code>#unlocked</code> 这个链接发给任何人</strong></td></tr>
+<tr><td>外部图床</td><td><code>gate: &quot;external&quot;</code> 的图位，本站不下载、不代理、不缓存原图</td><td>原图不在我手上，也不该在我手上</td></tr></tbody></table></div>
+<pre class="code" data-lang="bash"><code># 换图/加图的完整动作，三步
+cp 你的图.jpg ui/images/../photos/wear-03.jpg   # 源图放 ui/photos/
+bash build/blur.sh                               # 生成打码版 + 清单
+node build/build.js &amp;&amp; OUT_DIR=. node build/build.js</code></pre>
+<h2 id="3-三个诚实的结论比我们很重视隐私有用"><a class="anchor" href="#3-三个诚实的结论比我们很重视隐私有用" aria-hidden="true">#</a>3. 三个诚实的结论（比&quot;我们很重视隐私&quot;有用）</h2>
+<ol><li><strong>挂到公网图床的那一刻，&quot;能不能被看到&quot;就不再由此页决定了。</strong>图床没有访问控制、没有过期时间、往往能被搜索引擎抓取，而且 URL 一旦泄露就是永久泄露。本页这两张就是这种状态——请你自己判断是否接受。</li><li><strong>真正的访问控制只有三种</strong>：Cloudflare Access / GitHub Pages 私有仓库 + 鉴权代理 / 自己托管 + Basic Auth。客户端一律不可信，这是常识，不是我的偏好。</li><li><strong>最稳的做法是不上传。</strong>要给别人看，就走限时限人的通道（阅后即焚、本地传输），并在文件里去掉一切可识别信息。本站的图位系统对这种方式同样适用——<code>status: &quot;pending&quot;</code> 时页面只显示占位块，不显示任何内容。</li></ol>
+<h2 id="4-未经授权传播会面临的法律责任"><a class="anchor" href="#4-未经授权传播会面临的法律责任" aria-hidden="true">#</a>4. 未经授权传播会面临的法律责任</h2>
+<blockquote><p>下面是中国大陆法域的条文梳理，供你判断与举证时对照使用，<strong>不构成法律意见</strong>；真要动手，先咨询执业律师。第 4.3 那条尤其值得读完，它和多数人的直觉相反。</p></blockquote>
+<h3 id="31-民事责任对传播者最常用的一击"><a class="anchor" href="#31-民事责任对传播者最常用的一击" aria-hidden="true">#</a>3.1 民事责任（对传播者最常用的一击）</h3>
+<ul><li><span class="law">《民法典》第 1032、1033 条</span>隐私权。**第 1033 条第（三）（四）（五）项**明确禁止：拍摄、窥视、窃听、**公开**他人私密活动；拍摄他人身体的**私密部位**；处理他人私密信息（均须权利人明确同意）。救济：停止侵害、删除、赔礼道歉、损害赔偿。
+</li><li><span class="law">《民法典》第 1018—1020 条</span>肖像权。**现行法已取消"以营利为目的"这一要件**——不赚钱也侵权。照片若能认出人脸/体态特征，这条与隐私权可同时主张。
+</li><li><span class="law">《民法典》第 1024 条</span>名誉权。若传播时配了侮辱、造谣、丑化文字，另行成立。
+</li><li><span class="law">《民法典》第 1183 条</span>侵害自然人人身权益造成严重精神损害的，可请求**精神损害赔偿**。
+</li><li><span class="law">《个人信息保护法》第 28、29、69 条</span>私密信息属**敏感个人信息**，处理须取得单独同意；第 69 条是**过错推定**——处理者自证无过错，否则按损失或所得赔偿。
+</li></ul>
+<h3 id="32-行政责任治安处罚"><a class="anchor" href="#32-行政责任治安处罚" aria-hidden="true">#</a>3.2 行政责任（治安处罚）</h3>
+<ul><li><span class="law">《治安管理处罚法》（2025 修订，2026-01-01 施行）</span>侵犯人身权利一节中明确列举"**偷窥、偷拍、窃听、散布他人隐私**"，处 **5 日以下拘留或 500 元以下罚款**；情节较重 **5—10 日拘留，可并罚 500 元**。（2026 年前的旧版为第 42 条第 1 款第（六）项，起诉/报案时按行为发生时的版本引用。）
+</li><li><span class="law">第 80 条</span>制作、运输、复制、出售、出租淫秽图片等物品，**或者利用信息网络传播淫秽信息**：**10—15 日拘留，可并处 5000 元以下罚款**；情节较轻 5 日以下拘留或 1000—3000 元罚款。涉未成年人的从重。
+</li><li><span class="law">第 70 条</span>非法安装、使用、提供窃听窃照专用器材的，另有处罚。
+</li></ul>
+<h3 id="33-刑事责任注意这一条可能也指向本人"><a class="anchor" href="#33-刑事责任注意这一条可能也指向本人" aria-hidden="true">#</a>3.3 刑事责任（注意：这一条可能也指向&quot;本人&quot;）</h3>
+<ul><li><span class="law">《刑法》第 364 条第 1 款 · 传播淫秽物品罪</span>传播淫秽图片，**情节严重**的，处 **2 年以下有期徒刑、拘役或管制**。司法解释口径的"情节严重"常以**传播人次**计（如 300 人次以上），或造成恶劣社会影响。
+</li><li><span class="law">《刑法》第 363 条 · 传播淫秽物品牟利罪</span>一旦**以牟利为目的**（收费群、卖图、引流变现），量刑直接跳到 3 年以下 → 情节严重 3—10 年 → 情节特别严重 10 年以上或无期。
+</li><li><span class="law">关键误区</span>：第 363、364 条保护的是**社会管理秩序**，不是个人隐私。**"图里的人同意"并不能豁免这一罪**——也就是说，当事人本人向不特定多数人散布，同样存在刑事风险。这也是本站把器材与工程放在首位、把佩戴实拍做成"最小可传播单元"的现实原因。
+</li><li><span class="law">向不满 18 周岁的人传播</span>，从重处罚（第 364 条第 4 款）。
+</li></ul>
+<h3 id="34-平台与刑事交叉的其它情形"><a class="anchor" href="#34-平台与刑事交叉的其它情形" aria-hidden="true">#</a>3.4 平台与刑事交叉的其它情形</h3>
+<ul><li>用图<strong>要钱、要见面、要更多照片</strong> → 敲诈勒索罪（《刑法》第 274 条）。这是<strong>必须报警</strong>的情形，见 §5。</li><li>在群里/网盘/贴吧传播 → 平台依《网络信息内容生态治理规定》等承担删除义务，同时可作为治安/刑事案件的平台取证来源。</li></ul>
+<h2 id="5-万一真的流传出去了按顺序做"><a class="anchor" href="#5-万一真的流传出去了按顺序做" aria-hidden="true">#</a>5. 万一真的流传出去了：按顺序做</h2>
+<div class="note note-danger"><svg class="ic"><use href="#i-stop"/></svg><div><span class="note-label">第 1 步永远是取证，不是删除</span> <p><strong>先固定证据，再联系删除。</strong>一上来就慌着删，后面报警和起诉都会因为没有原始证据而卡死。取证要在同一小时内完成：链接、账号 ID、发布时间、转发量、评论截图；截图带系统时间；有预算就上&quot;可信时间戳/区块链存证&quot;或直接公证处网页取证公证。</p></div></div>
+<ol><li><strong>取证</strong>（同上）。把每个链接单独存一份，命名 <code>日期_平台_账号ID_内容哈希</code>。顺手记 <code>sha256sum 文件</code>，用于日后比对是否同一张。</li><li><strong>向平台投诉</strong>：走&quot;侵犯隐私/肖像权&quot;通道，提交权利人身份与截图。同时用英文发一份 DMCA/侵权通知（GitHub 走 <code>support@github.com</code> 的 DMCA 流程，图床找 abuse 邮箱；Cloudflare 可提交 <code>https://abuse.cloudflare.com</code>）。要求&quot;下架 + 提供上传者注册信息与登录日志&quot;。</li><li><strong>对能联系到的传播者</strong>：平台私信 → 书面（邮件/微信文字，留痕）要求<strong>立即删除、说明扩散范围、书面道歉</strong>。不要骂、不要谈判、不要给出任何补偿方案。</li><li><strong>被要挟</strong>：<strong>停止一切对话，不转一分钱，立刻报警</strong>（保留全部原始对话作为证据）。给钱只会把周期拉长，实践中没有&quot;给完就结束&quot;这回事。</li><li><strong>报警</strong>：按 §4.2 走治安案件（散布他人隐私）；扩散量大、有牟利、或以此为要挟时，请求按 §4.3 立案。带上打印好的取证包与 U 盘原件。</li><li><strong>民事起诉</strong>：侵权地/被告住所地法院，请求删除、赔礼道歉、精神损害赔偿；同时申请<strong>行为保全/禁令</strong>阻止继续扩散。</li><li><strong>次生伤害</strong>：如果家人、同事可能看到，提前准备一句最短的说明，并联系心理支持资源。这一步不是软弱，是止损。</li></ol>
+<h2 id="6-本站采取的预防性措施"><a class="anchor" href="#6-本站采取的预防性措施" aria-hidden="true">#</a>6. 本站采取的预防性措施</h2>
+<ul><li>原图不进仓库、不进 git 历史（<code>.gitignore</code> + <code>ui/photos/</code>）；构建只消费打码产物</li><li>含图位页面 <code>&lt;meta name=&quot;robots&quot; content=&quot;noindex,nosnippet&quot;&gt;</code>，<code>robots.txt</code> 屏蔽 <code>/assets/images/gated/</code></li><li>打码时强制 <code>-strip</code>，去掉 EXIF / GPS / 设备序列号</li><li>分辨率与尺寸统一降级（1600 px 上限 + 像素丢弃式马赛克）</li><li>页面顶部固定&quot;用途边界&quot;横幅：<strong>道具是 Cosplay 装饰附件</strong>，不是情趣用品；本站不推荐、不导购、不提供任何性用途层面的说明</li><li>不提供评论区、不接入任何统计/埋点/第三方脚本，图片路径不出现在 <code>sitemap.xml</code> 里</li><li>未成年人不得访问本页</li></ul>
+<h2 id="7-记录表真的出事了就填这张"><a class="anchor" href="#7-记录表真的出事了就填这张" aria-hidden="true">#</a>7. 记录表（真的出事了就填这张）</h2>
+<div class="table-scroll"><table><thead><tr><th>字段</th><th>说明</th></tr></thead><tbody><tr><td><code>discovered_at</code></td><td>发现时间（精确到分）</td></tr>
+<tr><td><code>platform</code> / <code>account_id</code></td><td>平台与账号标识（含 UID，别只记昵称）</td></tr>
+<tr><td><code>url</code></td><td>原始链接（含参数，用 paste 服务存成纯文本防自动展开）</td></tr>
+<tr><td><code>evidence_path</code></td><td>取证包路径 + <code>sha256</code></td></tr>
+<tr><td><code>spread_count</code></td><td>转发/浏览/群人数（平台显示值即可）</td></tr>
+<tr><td><code>reported_to</code></td><td>已提交投诉的平台/机关与工单号</td></tr>
+<tr><td><code>extortion</code></td><td>是否存在索要财物/条件（true/false，true 直接报警）</td></tr>
+<tr><td><code>legal_counsel</code></td><td>是否已联系律师（这是本节唯一&quot;必填&quot;的专业项）</td></tr></tbody></table></div>
+<hr>
+<span class="muted" style="font-size:.84rem">条文引用以官方发布文本为准；本页引用的《治安管理处罚法》为 2025 年修订、2026-01-01 施行版本，涉旧行为请按行为时版本适用。本页由本站维护者自行整理，不是法律意见，不构成任何形式的许可或授权。</span>
+</div></div></main>
+<div class="lightbox" role="dialog" aria-modal="true" aria-label="放大查看">
+  <button class="icon-btn" data-lb-close aria-label="关闭"><svg class="ic"><use href="#i-close"/></svg></button>
+  <div><img alt=""><p></p></div>
+</div>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>About</h4>
+        <p class="muted" style="max-width:44ch">TAILDOCK 是一份关于「模块化尾巴底座」的个人观测记录：把一坨 316L 不锈钢、一颗螺纹副和一段直肠黏膜之间的力学关系写清楚。目的只有一个——让道具穿戴更像工程，而不是更像运气。</p>
+        <div class="row" style="margin-top:14px">
+          <a class="btn btn-sm" href="https://github.com/elysianki4225-png/cosplay"><svg class="ic"><use href="#i-github"/></svg>源码 / 内容</a>
+          <a class="btn btn-sm" href="/feed.xml"><svg class="ic"><use href="#i-rss"/></svg>RSS</a>
+        </div>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/index.html">文章归档</a></li>
+          <li><a href="/gear.html">硬件规格表</a></li>
+          <li><a href="/safety.html">停戴红线清单</a></li>
+          <li><a href="/media-guide.html">拍摄与图片规范</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Disclaimer</h4>
+        <ul>
+          <li>本站道具定位为 <b>Cosplay 装饰/外观附件</b></li>
+          <li>非情趣用品推荐，无性用途描述</li>
+          <li>所有内容仅记录个人观测，不构成医疗建议</li>
+          <li>未成年人请勿阅读 / 请勿模仿</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-note">
+      <span>CC BY-NC 4.0 · 自建静态站（零依赖构建，无框架）</span>
+      <span class="mono"><a href="https://elysianki4225-png.github.io/cosplay/">elysianki4225-png.github.io/cosplay/</a></span>
+    </div>
+  </div>
+</footer>
+<button id="toTop" aria-label="回到顶部"><svg class="ic"><use href="#i-arrow-up"/></svg></button>
+<script src="/assets/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+/* ==========================================================================
+   base — reset + 排版 + 全局皮肤
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 14px); }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--font-sans); font-size: 16px; line-height: 1.75;
+  font-feature-settings: "cv05" 1, "ss01" 1; -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+/* 蓝图底纹：淡网格 + 十字标记，暗底下比纯黑有层次 */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px;
+  mask-image: radial-gradient(120% 90% at 50% 0%, #000 15%, transparent 80%);
+}
+h1, h2, h3, h4, h5 { margin: 0; font-weight: 650; line-height: 1.28; letter-spacing: -.018em; }
+p { margin: 0 0 1.05em; }
+a { color: inherit; text-decoration-color: color-mix(in srgb, var(--brand) 45%, transparent); text-underline-offset: 3px; }
+a:hover { color: var(--brand); }
+img, svg, video { display: block; max-width: 100%; height: auto; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+ul, ol { margin: 0 0 1.05em; padding-left: 1.3em; }
+li { margin: .32em 0; }
+hr { border: 0; border-top: 1px solid var(--line); margin: var(--section-gap) 0; }
+code, kbd, pre { font-family: var(--font-mono); font-size: .88em; }
+code { background: var(--surface-2); border: 1px solid var(--line-2); border-radius: 4px; padding: .1em .38em; }
+pre { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; overflow: auto; line-height: 1.6; }
+pre code { background: none; border: 0; padding: 0; font-size: .82em; }
+kbd { border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: .05em .4em; background: var(--surface); }
+blockquote { margin: 1.4em 0; padding: .2em 0 .2em 1.1em; border-left: 3px solid var(--brand); color: var(--fg-2); font-style: normal; }
+blockquote p:last-child { margin-bottom: 0; }
+table { border-collapse: collapse; width: 100%; font-size: .92em; }
+th, td { text-align: left; padding: .62em .8em; border-bottom: 1px solid var(--line-2); vertical-align: top; }
+thead th { font-size: .78em; text-transform: uppercase; letter-spacing: .09em; color: var(--fg-3); font-weight: 600; border-bottom-color: var(--line); }
+tbody tr:hover { background: color-mix(in srgb, var(--brand) 4%, transparent); }
+figure { margin: 0; }
+figcaption { font-size: .8em; color: var(--fg-3); line-height: 1.6; padding-top: .6em; }
+::selection { background: color-mix(in srgb, var(--brand) 25%, transparent); }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 3px; }
+
+.ic { width: 1.15em; height: 1.15em; flex: none; vertical-align: -.18em; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: absolute; left: 12px; top: -60px; z-index: 100;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: 8px 14px; transition: top var(--dur) var(--ease);
+}
+.skip-link:focus { top: 12px; }
+
+/* 排版尺度：正文用 fluid，长文不至于在大屏上散开 */
+.prose { font-size: clamp(15.5px, .45vw + 14.3px, 17.4px); }
+.prose > * + * { margin-top: 0; }
+.prose h2 { font-size: 1.62em; margin: 2.1em 0 .55em; letter-spacing: -.022em; }
+.prose h3 { font-size: 1.22em; margin: 1.85em 0 .5em; }
+.prose h4 { font-size: 1.02em; margin: 1.5em 0 .4em; color: var(--fg-2); }
+.prose p + p, .prose ul + p { margin-top: -.15em; }
+.prose li + li { margin-top: .38em; }
+.prose h2, .prose h3 { scroll-margin-top: calc(var(--nav-h) + 18px); position: relative; }
+/* 锚点小尾巴，鼠标移到标题上才出现 */
+.prose .anchor { position: absolute; left: -1.05em; opacity: 0; color: var(--brand); text-decoration: none; font-weight: 400; }
+.prose h2:hover .anchor, .prose h3:hover .anchor { opacity: 1; }
+.prose a:not(.btn):not(.tag) { text-decoration: underline; }
+.prose strong { color: var(--fg); font-weight: 680; }
+.prose em { color: var(--fg-2); }
+
+/* 工具类：只放这几个页面里真正用得到的，别搞成 tailwind 复刻 */
+.wrap { width: min(100% - 2.6rem, var(--wrap)); margin-inline: auto; }
+.wrap-narrow { width: min(100% - 2.6rem, 880px); margin-inline: auto; }
+.measure { max-width: var(--measure); }
+.mono { font-family: var(--font-mono); }
+.muted { color: var(--fg-3); }
+.lead { font-size: 1.08em; color: var(--fg-2); }
+.stack > * + * { margin-top: var(--stack-gap, 12px); }
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.row-between { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.center { text-align: center; }
+.nowrap { white-space: nowrap; }
+.tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.mt-0 { margin-top: 0; } .mb-0 { margin-bottom: 0; }
+.grid-2 { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.grid-3 { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.grid-4 { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); }
+.grid-12 { display: grid; gap: var(--gap); grid-template-columns: repeat(12, 1fr); }
+.col-3 { grid-column: span 3; } .col-4 { grid-column: span 4; } .col-5 { grid-column: span 5; }
+.col-6 { grid-column: span 6; } .col-7 { grid-column: span 7; } .col-8 { grid-column: span 8; }
+.col-12 { grid-column: span 12; }
+.divider { height: 1px; background: var(--line); border: 0; margin: var(--section-gap) 0; }
+
+@media (max-width: 900px) {
+  .col-3, .col-4, .col-5, .col-6, .col-7, .col-8 { grid-column: span 12; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
