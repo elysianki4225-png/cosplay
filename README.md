@@ -52,7 +52,7 @@ ui/
   css/base.css      reset、排版尺度、工具类
   css/ui.css        响应式组件库
   js/main.js        主题 / 抽屉 / 目录高亮 / 搜索 / lightbox / 计时器
-  icons.svg         36 枚自绘 24×24 图标，构建时内联
+  icons.svg         40 枚自绘 24×24 图标，构建时内联
   images/           实拍与示意图源文件（产物里落到 assets/images/）
 build/build.js      markdown 子集解析 + 页面装配 + RSS/sitemap/搜索索引
 src/
