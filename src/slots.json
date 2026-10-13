@@ -39,8 +39,8 @@
   "bristol": {
     "src": "assets/images/bristol.png",
     "alt": "布里斯托第 5 型形态示意（图表，非实拍）",
-    "caption": "图 07 / 第 5 型：软块、边界清晰。这里只画形态，不放实拍。",
-    "status": "pending"
+    "caption": "图 07 / 第 5 型：软块、边界清晰。只画形态，不放实拍。",
+    "status": "ready"
   },
   "torque-tool": {
     "src": "assets/images/torque-tool.jpg",
