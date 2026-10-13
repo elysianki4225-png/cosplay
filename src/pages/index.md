@@ -62,11 +62,12 @@ nav: index.html
 
   <div class="col-12 panel" style="margin-top:4px">
     <div class="sec-head" style="margin-bottom:14px">
-      <h2 style="font-size:1.15rem">按目的选入口</h2><span class="sec-tag">4 paths</span>
+      <h2 style="font-size:1.15rem">按目的选入口</h2><span class="sec-tag">5 paths</span>
     </div>
     <div class="grid-4">
       <div class="stack"><a class="tag" href="gear.html"><svg class="ic"><use href="#i-base"/></svg>硬件档案</a><p class="muted mb-0" style="font-size:.86rem">完整规格表、材质判定、耗材更换周期，每个数值标了"实测/标称/估算"。</p></div>
       <div class="stack"><a class="tag" href="safety.html"><svg class="ic"><use href="#i-shield"/></svg>安全红线</a><p class="muted mb-0" style="font-size:.86rem">可打印单页：立即停戴 8 条、禁忌 8 条、自检 5 步、就医时要带的信息。</p></div>
+      <div class="stack"><a class="tag" href="privacy.html"><svg class="ic"><use href="#i-lock"/></svg>隐私与法务</a><p class="muted mb-0" style="font-size:.86rem">打码是怎么做的、什么做不到；未经授权传播的民/行/刑责任，以及出事后的 7 步。</p></div>
       <div class="stack"><a class="tag" href="media-guide.html"><svg class="ic"><use href="#i-camera"/></svg>拍摄规范</a><p class="muted mb-0" style="font-size:.86rem">四个标准机位 + 图位工作流；为什么本站图片只拍器材不拍身体。</p></div>
       <div class="stack"><a class="tag" href="log.html"><svg class="ic"><use href="#i-clipboard"/></svg>更新日志</a><p class="muted mb-0" style="font-size:.86rem">站点 Rev 与器材 Rev 双时间线——器材一改，正文里的力学数值就得重算。</p></div>
     </div>

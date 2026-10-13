@@ -20,6 +20,9 @@ const OUT_IS_ROOT = () => path.resolve(OUT) === path.resolve(ROOT);
 
 let slots = {};
 try { slots = require(path.join(SRC, 'slots.json')); } catch (e) {}
+let gate = {};
+try { gate = require(path.join(ROOT, 'ui/images/gated.json')); } catch (e) {}
+if (!gate || gate.constructor !== Object) gate = {};   // blur.sh 留下的空壳，别让它把渲染搞崩  // blur.sh 没跑过就是空，gated 图位自动退化成占位
 
 /* ---------------- front matter ---------------- */
 function splitFront(src) {
@@ -47,7 +50,8 @@ function escHtml(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', 
 
 function inline(s) {
   const codes = [];
-  s = s.replace(/`([^`\n]+)`/g, (_, c) => { codes.push(c); return `\u0000${codes.length - 1}\u0000`; });
+  // 反引号内容必须在这一步就转义：后面那句 escHtml 只作用于正文，藏起来的 code span 它碰不到
+  s = s.replace(/`([^`\n]+)`/g, (_, c) => { codes.push(escHtml(c)); return `\u0000${codes.length - 1}\u0000`; });
   s = escHtml(s);
   // 图片单独走 figure/占位逻辑，这里只处理行内
   s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g, (_, alt, url, cap) => img(alt, url, cap, false));
@@ -81,9 +85,31 @@ function placeholder(label, alt, cap) {
     <small>${escHtml(cap || '把图丢进 assets/images/ 后重新构建即可')}</small>
   </div>`;
 }
+function figInner(imgHtml, cap, key) {
+  return `<figure class="shot">${imgHtml}<figcaption>${escHtml(cap || '')}</figcaption></figure>${key ? `<!-- slot:${key} -->` : ''}`;
+}
+function gateHtml(key, s) {
+  const g = gate[key];
+  const cap = s.caption || '';
+  const alt = s.alt || '';
+  // 外部图床的 raw 不写进 HTML：解锁时才由 gate.js 现插，避免源码里躺着直链
+  if (s.gate === 'external') {
+    return `<figure class="shot gate" data-gate="external" data-locked="1" data-raw="${escHtml(s.raw || '')}" data-alt="${escHtml(alt)}" data-caption="${escHtml(s.caption || '')}" id="gate-${key}">
+  <div class="gate-frame">${g ? `<img src="${g.thumb}" alt="" loading="lazy" fetchpriority="low">` : ''}
+    <span class="gate-mosaic" aria-hidden="true"></span></div>
+  <figcaption><button class="btn btn-sm gate-btn" type="button"><svg class="ic"><use href="#i-eye"/></svg><span>点击查阅原图</span></button><span class="gate-note">已打码 · 原图挂在外部图床，本站不代理不缓存</span><div class="gate-cap" hidden></div></figcaption>
+</figure>`;
+  }
+  if (!g) return placeholder(key, alt, '原图未处理：把图放 ui/photos/ 后跑 build/blur.sh');
+  return `<figure class="shot gate" data-gate="${key}" data-locked="1" data-raw="${BASE}${'assets/images/gated/' + key + '.png'}" data-alt="${escHtml(alt)}" id="gate-${key}">
+  <div class="gate-frame"><img src="${BASE + g.thumb}" alt="" loading="lazy"><span class="gate-mosaic" aria-hidden="true"></span></div>
+  <figcaption><button class="btn btn-sm gate-btn" type="button"><svg class="ic"><use href="#i-eye"/></svg><span>点击查阅原图</span></button><span class="gate-note">打码图由 build/blur.sh 生成 · 原图不入库</span></figcaption>
+</figure>`;
+}
 // 图床/仓库路径统一从 slots.json 走，改图不用动正文
-function slotHtml(key, block) {
+function slotHtml(key, s2, block) {
   const s = slots[key];
+  if (s && s.gate) return gateHtml(key, s);
   if (!s) return placeholder(key, '未登记的图位', '在 src/slots.json 里补一条');
   if (s.status !== 'ready') return placeholder(key, s.alt || key, s.caption);
   const src = /^(https?:|data:)/.test(s.src) ? s.src : BASE + s.src.replace(/^\/+/, '');
@@ -218,7 +244,12 @@ function renderBlocks(src, ctx) {
     }
     // 整行只有图片 / slot
     if ((m = /^!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)\s*$/.exec(ln.trim()))) { out += img(m[1], m[2], m[3], true) + '\n'; continue; }
-    if ((m = /^\{\{slot:([\w.-]+)\}\}\s*$/.exec(ln.trim()))) { out += slotHtml(m[1], true) + '\n'; continue; }
+    if ((m = /^\{\{slot:([\w.-]+)\}\}\s*$/.exec(ln.trim()))) {
+      const key = m[1];
+      // gate 块自己带 <figure>，不能再套一层
+      out += (slots[key] && slots[key].gate) ? gateHtml(key, slots[key]) + '\n' : slotHtml(key, null, true) + '\n';
+      continue;
+    }
 
     const buf = [ln];
     // 遇到下一个块级开头（含 <DIV / </div> 收口）就断掉，别把它当段落续行吞了
@@ -254,7 +285,7 @@ function renderMarkdown(md) {
 const FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f5f7a'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2.2' fill='%23fff'/%3E%3C/svg%3E";
 
 function layout(opts) {
-  const { title, desc, body, active = '', wide = false } = opts;
+  const { title, desc, body, active = '', wide = false, noindex = false } = opts;
   const url = cfg.siteUrl.replace(/\/$/, '') + opts.pathname;
   const nav = cfg.nav.map(n => {
     const cur = n.href === active ? ' aria-current="page"' : '';
@@ -276,6 +307,7 @@ function layout(opts) {
 <meta property="og:url" content="${url}">
 <meta property="og:image" content="${cfg.siteUrl.replace(/\/$/, '')}/assets/images/og.jpg">
 <link rel="canonical" href="${url}">
+${noindex ? '<meta name="robots" content="noindex,nosnippet">' : ''}
 <link rel="icon" href="${FAVICON}">
 <link rel="icon" type="image/png" sizes="64x64" href="${BASE}assets/favicon.png">
 <link rel="alternate" type="application/rss+xml" title="${escHtml(cfg.title)}" href="${BASE}feed.xml">
@@ -365,15 +397,25 @@ function copyAssets() {
   // ui.css 是三个文件拼出来的，源码里分开写，产物里一个请求
   const css = ['tokens', 'base', 'ui'].map(n => `/* ---- ${n}.css ---- */\n` + fs.readFileSync(path.join(ROOT, 'ui/css', n + '.css'), 'utf8')).join('\n');
   fs.writeFileSync(path.join(OUT, 'assets/ui.css'), css);
-  fs.copyFileSync(path.join(ROOT, 'ui/js/main.js'), path.join(OUT, 'assets/main.js'));
+  // main.js 里没内联网址/CDN 依赖，gate.js 直接拼进同一个文件，省一个请求
+  const js = ['main', 'gate'].map(n => fs.readFileSync(path.join(ROOT, 'ui/js', n + '.js'), 'utf8')).join('\n');
+  fs.writeFileSync(path.join(OUT, 'assets/main.js'), js);
   const fav = path.join(ROOT, 'ui/favicon.png');
   if (fs.existsSync(fav)) fs.copyFileSync(fav, path.join(OUT, 'assets/favicon.png'));
   const icons = fs.readFileSync(path.join(ROOT, 'ui/icons.svg'), 'utf8');
   fs.writeFileSync(path.join(OUT, 'assets/icons.svg'), icons);
+  const gd = path.join(ROOT, 'ui/images/gated');
+  fs.mkdirSync(path.join(OUT, 'assets/images/gated'), { recursive: true });
+  if (fs.existsSync(gd)) for (const f of fs.readdirSync(gd)) {
+    if (fs.statSync(path.join(gd, f)).isFile()) fs.copyFileSync(path.join(gd, f), path.join(OUT, 'assets/images/gated', f));
+  }
   const imgs = path.join(ROOT, 'ui/images');
   if (fs.existsSync(imgs)) {
     fs.mkdirSync(path.join(OUT, 'assets/images'), { recursive: true });
-    for (const f of fs.readdirSync(imgs)) fs.copyFileSync(path.join(imgs, f), path.join(OUT, 'assets/images', f));
+    for (const f of fs.readdirSync(imgs)) {
+      const fp = path.join(imgs, f);
+      if (fs.statSync(fp).isFile()) fs.copyFileSync(fp, path.join(OUT, 'assets/images', f));
+    }
   }
   return icons.replace('<svg xmlns="http://www.w3.org/2000/svg" style="display:none">', '<svg xmlns="http://www.w3.org/2000/svg" id="sprite-host" hidden aria-hidden="true" style="display:none">');
 }
@@ -436,7 +478,7 @@ function build() {
     const body = `<header class="article-head"><h1>${escHtml(g.fm.title)}</h1>${g.fm.desc ? `<p class="lead measure">${inline(g.fm.desc)}</p>` : ''}</header>
       <div class="article-layout">${tocOf(toc)}<div class="prose">${html}</div></div>`;
     g.out = `${g.slug}.html`;
-    const page = layout({ title: g.fm.title, desc: g.fm.desc, body, active: g.fm.nav || g.out, toc, pathname: '/' + g.out, wide: true });
+    const page = layout({ title: g.fm.title, desc: g.fm.desc, body, active: g.fm.nav || g.out, toc, pathname: '/' + g.out, wide: true, noindex: g.fm.noindex === 'true' || g.fm.noindex === true });
     write(g.out, page.replace('<body>', '<body>' + sprite));
   }
 
@@ -480,10 +522,11 @@ function build() {
 ${items}</channel></rss>`);
   write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${[...published.map(p => `posts/${p.slug}.html`), ...pages.map(p => `${p.slug}.html`), 'index.html']
+${[...published.map(p => `posts/${p.slug}.html`), ...pages.filter(p => p.fm.noindex !== 'true' && p.fm.noindex !== true).map(p => `${p.slug}.html`), 'index.html']
     .map(u => `  <url><loc>${site}${u}</loc></url>`).join('\n')}
 </urlset>`);
-  write('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${site}sitemap.xml\n`);
+  // 打码目录与含图位页面不让爬虫进；noindex 只是请求，真正要挡的是这里
+  write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /assets/images/gated/\nDisallow: /privacy.html\nSitemap: ${site}sitemap.xml\n`);
 
   const n = published.length + pages.length + 2;
   console.log(`built ${n} pages · ${published.length} posts · BASE=${BASE}`);

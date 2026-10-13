@@ -16,6 +16,7 @@ module.exports = {
     { href: 'posts/modular-tail-base-23-1.html', text: '主报告', icon: 'i-gear' },
     { href: 'gear.html', text: '硬件档案', icon: 'i-base' },
     { href: 'safety.html', text: '安全红线', icon: 'i-shield' },
+    { href: 'privacy.html', text: '隐私与法务', icon: 'i-lock' },
     { href: 'media-guide.html', text: '拍摄规范', icon: 'i-camera' },
     { href: 'log.html', text: '更新日志', icon: 'i-clipboard' },
   ],

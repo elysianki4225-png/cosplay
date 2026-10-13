@@ -527,3 +527,48 @@ a.ext::after { content: ""; display: inline-block; width: .85em; height: .85em; 
 pre.code { position: relative; }
 pre.code::after { content: attr(data-lang); position: absolute; right: 10px; top: 6px; font-family: var(--font-mono);
   font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-3); }
+
+/* ==========================================================================
+   gate — 佩戴实拍的打码访问控制
+   核心：默认展示的图本身就是被打糊的产物，未解锁时 DOM 里根本没有原图 src，
+   所以 F12 改样式、禁用 JS、看图片网络请求都拿不到"清晰版"。
+   ========================================================================== */
+.gate { position: relative; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--line); background: var(--bg-2); }
+.gate-frame { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background:
+  repeating-linear-gradient(45deg, var(--surface-2), var(--surface-2) 8px, var(--bg-2) 8px, var(--bg-2) 16px); }
+.gate-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* 再叠一层像素格 + 暗化，视觉上明确告诉你"这是被打码的，不是加载失败" */
+.gate-mosaic { position: absolute; inset: 0; pointer-events: none;
+  background-image: linear-gradient(rgba(12, 14, 16, .38), rgba(12, 14, 16, .38)),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, .05) 0 6px, transparent 6px 12px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .05) 0 6px, transparent 6px 12px);
+  transition: opacity .3s var(--ease); }
+.gate-lock { position: absolute; inset: 0; display: grid; place-items: center; gap: 8px; align-content: center;
+  color: #eef1f4; text-shadow: 0 1px 6px rgba(0,0,0,.6); pointer-events: none; }
+.gate-lock .ic { width: 28px; height: 28px; }
+.gate-lock span { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; }
+.gate[data-locked="1"] .gate-frame img.raw { display: none; }
+.gate[data-locked="1"] figcaption img { visibility: hidden; }   /* 别让 alt 之外的东西漏内容 */
+.gate img.raw { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+  background: #07090b; animation: gatefade .35s var(--ease); }
+.gate .gate-frame img.raw { object-fit: cover; }
+@keyframes gatefade { from { opacity: 0; filter: blur(12px); } to { opacity: 1; filter: none; } }
+.gate figcaption { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 12px;
+  border-top: 1px solid var(--line); background: var(--surface); color: var(--fg-2); font-size: .82rem; }
+.gate figcaption > .gate-cap { flex: 1 1 100%; order: 3; }
+.gate-btn { border-color: color-mix(in srgb, var(--brand) 35%, var(--line)); }
+.gate-note { font-family: var(--font-mono); font-size: .72rem; color: var(--fg-3); letter-spacing: .04em; }
+.gate[data-locked="0"] { border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); }
+.gate[data-locked="0"] .gate-mosaic { opacity: 0; }
+.gate[data-locked="0"] .gate-lock { display: none; }
+.gate figcaption .gate-cap { flex-basis: 100%; }
+.gate-banner { margin: 0 0 18px; }
+
+/* 法务块 */
+.legal { display: grid; gap: 12px; }
+.legal article { border: 1px solid var(--line); border-left: 3px solid var(--brand); border-radius: var(--radius);
+  background: var(--surface); padding: 14px 16px; }
+.legal h4 { margin: 0 0 6px; font-size: .95rem; }
+.legal p { margin: 0; font-size: .88rem; color: var(--fg-2); }
+.legal .law { font-family: var(--font-mono); font-size: .74rem; color: var(--brand); letter-spacing: .03em; display: block; margin-bottom: 4px; }
+.legal-grid { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }

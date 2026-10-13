@@ -85,6 +85,22 @@ https://raw.githubusercontent.com/<user>/<img-repo>/<branch>/<path>.png
 
 注意：`raw.githubusercontent.com` 在部分地区不稳；而且**外链图床不受版本控制**，图片改名即断链。所以默认策略还是图片进本仓库，外链只当临时方案。
 
+## 4.5 佩戴实拍：走 gate 通道，不走常规图位
+
+器材图（本页 S1–S4）可以随便铺；**佩戴位实拍只允许出现在 `privacy.html`，且必须是 `gate` 图位**：
+
+```json
+"wear-03": {
+  "gate": "local",                  // local = 原图在 ui/photos/，构建时打码
+  "src": "assets/images/gated/wear-03.png",
+  "alt": "佩戴位实拍（贴合状态）",
+  "caption": "图 13 / 法兰边缘与体表的贴合状态。",
+  "status": "ready"
+}
+```
+
+`gate: "external"` 则是原图挂在外部图床（本站不下载、不代理）。区别要说清楚：**external 的"打码"只存在于本站页面**，图床那头有没有遮挡、会不会被抓走，与本站无关。
+
 ## 5. 分发与平台适配
 
 | 渠道 | 可行性 | 做法 |

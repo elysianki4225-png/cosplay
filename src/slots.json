@@ -59,5 +59,24 @@
     "alt": "工位俯拍：底座、备件、扭力起子",
     "caption": "图 10 / 换件工位。",
     "status": "ready"
+  },
+  "_gate": "带 gate 的图位：默认只渲染真·马赛克（build/blur.sh 产出，像素已经压掉，不是 CSS 滤镜）。点击才换成 raw。gate=external 表示原图挂在外部图床，本站不存原图也不对其可访问性负责。",
+  "wear-01": {
+    "gate": "external",
+    "blur": "",
+    "raw": "https://im.gurl.eu.org/file/AgACAgEAAxkDAAEBtihqzjU3zyU75YFg-20ySWiWm64U3AACuwxrG3a_eEa7ke9zR4A3zgEAAwIAA3kAAz0E.png",
+    "alt": "佩戴位记录（内容从略）",
+    "caption": "图 11 / 佩戴位记录 · 其一。默认打码。",
+    "status": "ready",
+    "note": "alt 故意写得没信息量：未解锁状态不该让 alt 泄露内容"
+  },
+  "wear-02": {
+    "gate": "external",
+    "blur": "",
+    "raw": "https://im.gurl.eu.org/file/AgACAgEAAxkDAAEBtilqzjV3Y3E_d0vz2I3t7MXvl2o5ZgACvAxrG3a_eEaSWvzdns2WWAEAAwIAA3kAAz0E.png",
+    "alt": "佩戴位记录（内容从略）",
+    "caption": "图 12 / 佩戴位记录 · 其二。默认打码。",
+    "status": "ready",
+    "note": "alt 故意写得没信息量：未解锁状态不该让 alt 泄露内容"
   }
 }
